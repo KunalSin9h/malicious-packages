@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-06T19:51:16Z",
+  "modified": "2026-10-06T19:51:16Z",
+  "summary": "tailwind-forms-kit executes remote attacker code on import via blockchain-resolved C2",
+  "details": "The package masquerades as a copy of @tailwindcss/forms but prepends an obfuscated IIFE to src/index.js that runs the moment the module is required. The loader is reconstructed from a ~190-element base64 string array, atob-decoded and eval'd. The decoded loader queries public Ethereum RPC/Blockscout endpoints (eth.blockscout.com/api) for transactions from sender 0xa322E5f3D311D3080e6f0121063e9aDC2490Ef1a and extracts a C2 IP address from the `to` field of a transaction (EtherHiding technique), then fetches an XOR-encoded second-stage payload from http://<resolved-ip>:443/0x/cls and /0x/ls, decrypts it, and eval's it. The loader additionally spawns a detached, stdio-ignored, windowsHide node subprocess running the attacker-supplied code via `node -e`, which outlives the parent process. The package name resembling @tailwindcss/forms is the lure; the native tailwindcss/forms content is cover for the install-time fetch-and-eval chain.",
+  "affected": [
+    {
+      "package": {
+        "name": "tailwind-forms-kit",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "0.5.3"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "src/index.js",
+              "sha256": "0bca0654b9db9263dba6eb6e135a036c2a2d1fe424bfb42eecb2b91f0b63425e",
+              "tlsh": "a3a25b2be313023f7e3b4c6596d9bdc8220e644a65f016c1f45d66b54fca9c968bb30d"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "tailwind-forms-kit-0.5.3.tgz",
+              "hashes": {
+                "sha1": "0080ad87878b60e03d97264a1e27c3d5a7f7a962",
+                "sha512_sri": "sha512-xXO4uXN8sPG6sJWRGK95X3tZ40ogUKr0JcdUn1ywotk0hXUIPKTvoWlW4R0BR5Ed14C2JusrU6bV+Rsm8fjSyw=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/tailwind-forms-kit/v/0.5.3"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021099",
+        "import_time": "2026-10-06T20:20:38.700621273Z",
+        "modified_time": "2026-10-06T19:51:16Z",
+        "sha256": "0ddad6b159f2cfa136e4e3f97e86ab0b901a4fb083d1a18987f9daf48f66306e",
+        "source": "amazon-inspector",
+        "versions": [
+          "0.5.3"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}
