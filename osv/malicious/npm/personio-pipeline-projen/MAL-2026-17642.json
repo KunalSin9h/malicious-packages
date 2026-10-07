@@ -1,7 +1,9 @@
 {
-  "schema_version": "1.7.4",
   "modified": "2026-10-07T06:03:15Z",
   "published": "2026-10-07T04:52:26Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17642",
+  "summary": "Malicious code in personio-pipeline-projen (npm)",
   "details": "personio-pipeline-projen presents itself as an authorized dependency-confusion proof-of-concept; the evidence does not identify a copied public package. Its preinstall hook runs on install with `node canary.js`. The dependency-confusion probe encodes the installing machine's hostname and username, present CI-variable names, and root project and lifecycle identifiers in a DNS label under `db2su65ptuma8gfn6ing8e7dx7wp55zit.oast.fun`, and sends an HTTPS GET to `hrcv3zo9m3z70yr91ssdz669c0ir6ju8.oastify.com`. The npm account `reaperhackbot256f` published it on 2026-10-07 (UTC).",
   "affected": [
     {
@@ -32,11 +34,11 @@
   "credits": [
     {
       "name": "InvisiRisk, Inc.",
+      "type": "FINDER",
       "contact": [
         "https://www.invisirisk.com",
         "mailto:research@invisirisk.com"
-      ],
-      "type": "FINDER"
+      ]
     }
   ],
   "database_specific": {
@@ -45,30 +47,30 @@
         "db2su65ptuma8gfn6ing8e7dx7wp55zit.oast.fun",
         "hrcv3zo9m3z70yr91ssdz669c0ir6ju8.oastify.com"
       ],
-      "urls": [
-        "https://hrcv3zo9m3z70yr91ssdz669c0ir6ju8.oastify.com/h"
-      ],
       "files": [
         {
-          "source": "PACKAGE_ARCHIVE",
-          "paths": [
-            "package.json"
-          ],
           "digests": {
             "sha256": "9047c11dc81dda0e8120f6777cb88678eaa0d7c995adb8d069731ab6b85f9a1e"
           },
-          "note": "preinstall script: node canary.js"
+          "note": "preinstall script: node canary.js",
+          "paths": [
+            "package.json"
+          ],
+          "source": "PACKAGE_ARCHIVE"
         },
         {
-          "source": "PACKAGE_ARCHIVE",
-          "paths": [
-            "canary.js"
-          ],
           "digests": {
             "sha256": "88fdfbfbc5982045f7fdc7a4f6097031b64689d1003c1a592156f37921db63f6"
           },
-          "note": "Executed by the preinstall script of personio-pipeline-projen@1.171.31."
+          "note": "Executed by the preinstall script of personio-pipeline-projen@1.171.31.",
+          "paths": [
+            "canary.js"
+          ],
+          "source": "PACKAGE_ARCHIVE"
         }
+      ],
+      "urls": [
+        "https://hrcv3zo9m3z70yr91ssdz669c0ir6ju8.oastify.com/h"
       ]
     }
   }
