@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T14:26:18Z",
   "modified": "2026-10-08T14:26:18Z",
-  "summary": "node-env-resolve ships a persistent remote-access trojan with hardcoded C2",
-  "details": "The package is advertised as an environment configuration resolver but its postinstall script installs a hidden persistent agent into user-level directories named to resemble Node tooling (`~/.node-gyp-cache`, `%APPDATA%\\node-gyp-cache`, `/opt/connector-service`) and registers autostart via the Windows Registry Run key (`node-gyp-cache`), a macOS LaunchAgent (`com.user.connector`), or a Linux autostart desktop entry, then spawns the agent detached. The agent entrypoint registers the host with the hardcoded C2 at `https://connector-server-xi.vercel.app`, polls `/api/agent/signal/poll?machineId=`, and opens a WebRTC peer session whose inbound commands are dispatched to mouse and keyboard input synthesis, screen capture (JPEG frames over the data channel), microphone capture (PCM audio), and arbitrary filesystem operations (`listDirectory`, `readFileContent`, `readFileBinary` base64 up to 10MB, `zipFolder` up to 50MB, `deleteItem`, `saveUploadedFile`) rooted under the user's home directory. A dedicated `browserHistory.js` copies Chrome, Edge, and Firefox history SQLite databases (including `-wal`) to temp and returns URLs, titles, visit counts, and timestamps back over the P2P meta channel on `history:request`. Internal names (`Windows System Connector`, `System connectivity and update service`, `com.user.connector`, `node-gyp-cache`) are chosen to blend into legitimate OS/Node tooling and hide the agent from autostart inspection.",
+  "published": "2026-10-08T14:26:18Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17681",
+  "summary": "Malicious code in node-env-resolve (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (6f3e0e1b364a3d74534d6ce1eca74778a85e508cf10952f84f36bf1badd8a581)\nThe package is advertised as an environment configuration resolver but its postinstall script installs a hidden persistent agent into user-level directories named to resemble Node tooling (`~/.node-gyp-cache`, `%APPDATA%\\node-gyp-cache`, `/opt/connector-service`) and registers autostart via the Windows Registry Run key (`node-gyp-cache`), a macOS LaunchAgent (`com.user.connector`), or a Linux autostart desktop entry, then spawns the agent detached. The agent entrypoint registers the host with the hardcoded C2 at `https://connector-server-xi.vercel.app`, polls `/api/agent/signal/poll?machineId=`, and opens a WebRTC peer session whose inbound commands are dispatched to mouse and keyboard input synthesis, screen capture (JPEG frames over the data channel), microphone capture (PCM audio), and arbitrary filesystem operations (`listDirectory`, `readFileContent`, `readFileBinary` base64 up to 10MB, `zipFolder` up to 50MB, `deleteItem`, `saveUploadedFile`) rooted under the user's home directory. A dedicated `browserHistory.js` copies Chrome, Edge, and Firefox history SQLite databases (including `-wal`) to temp and returns URLs, titles, visit counts, and timestamps back over the P2P meta channel on `history:request`. Internal names (`Windows System Connector`, `System connectivity and update service`, `com.user.connector`, `node-gyp-cache`) are chosen to blend into legitimate OS/Node tooling and hide the agent from autostart inspection.\n",
   "affected": [
     {
       "package": {
-        "name": "node-env-resolve",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "node-env-resolve"
       },
       "versions": [
         "1.2.3"
@@ -63,6 +64,15 @@
       "url": "https://www.npmjs.com/package/node-env-resolve/v/1.2.3"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -76,14 +86,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }
