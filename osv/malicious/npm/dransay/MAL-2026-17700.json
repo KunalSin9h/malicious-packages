@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T17:23:01Z",
   "modified": "2026-10-08T17:23:01Z",
-  "summary": "Preinstall beacon to Interactsh OAST collaborator exposes installer network identity",
-  "details": "dransay@99.0.0 declares a `preinstall` lifecycle script that runs `node beacon.js`, which performs a DNS lookup and HTTPS GET against a hardcoded Interactsh (`oast.site`) collaborator subdomain (`db3klhbi6i9hark1kegg174t38h33b6wt.oast.site`) on every `npm install`. The outbound request discloses the installer's source IP, DNS resolver IP, hostname-derived data, and timestamp to a third-party collaborator host unrelated to any first-party publisher. The package name and implausibly high version (99.0.0) are consistent with a dependency-confusion probe targeting an internal package name. The README self-labels the package as a benign dependency-confusion proof-of-concept; the self-label does not change the behavior — install-time, non-consensual outbound network I/O to a researcher-controlled OAST host that collects installer network identity.",
+  "published": "2026-10-08T17:23:01Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17700",
+  "summary": "Malicious code in dransay (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (46d06d0ce82913346840f676660d67f9838f48511e58eef793bfe7c52091071f)\ndransay@99.0.0 declares a `preinstall` lifecycle script that runs `node beacon.js`, which performs a DNS lookup and HTTPS GET against a hardcoded Interactsh (`oast.site`) collaborator subdomain (`db3klhbi6i9hark1kegg174t38h33b6wt.oast.site`) on every `npm install`. The outbound request discloses the installer's source IP, DNS resolver IP, hostname-derived data, and timestamp to a third-party collaborator host unrelated to any first-party publisher. The package name and implausibly high version (99.0.0) are consistent with a dependency-confusion probe targeting an internal package name. The README self-labels the package as a benign dependency-confusion proof-of-concept; the self-label does not change the behavior — install-time, non-consensual outbound network I/O to a researcher-controlled OAST host that collects installer network identity.\n",
   "affected": [
     {
       "package": {
-        "name": "dransay",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "dransay"
       },
       "versions": [
         "99.0.0"
@@ -48,6 +49,15 @@
       "url": "https://www.npmjs.com/package/dransay/v/99.0.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -61,14 +71,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }
