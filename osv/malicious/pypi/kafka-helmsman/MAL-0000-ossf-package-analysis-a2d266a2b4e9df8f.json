@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T21:15:56Z",
+  "modified": "2026-10-08T21:15:56Z",
+  "summary": "Malicious code in kafka-helmsman (PyPI)",
+  "details": "The OpenSSF Package Analysis project identified 'kafka-helmsman' @ 99.0.1 (pypi) as malicious.\n\nIt is considered malicious because:\n\n- The package communicates with a domain associated with malicious activity.\n",
+  "affected": [
+    {
+      "package": {
+        "name": "kafka-helmsman",
+        "ecosystem": "PyPI"
+      },
+      "versions": [
+        "99.0.1"
+      ]
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "import_time": "2026-10-08T21:18:09.362483578Z",
+        "modified_time": "2026-10-08T21:15:56Z",
+        "sha256": "a2d266a2b4e9df8f2466cfb34e58fe98c636cb75d4ad1ec08cee919bd9a86588",
+        "source": "ossf-package-analysis",
+        "versions": [
+          "99.0.1"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "OpenSSF: Package Analysis",
+      "contact": [
+        "https://github.com/ossf/package-analysis",
+        "https://openssf.slack.com/channels/package_analysis"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

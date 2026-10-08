@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T21:11:07Z",
+  "modified": "2026-10-08T21:11:07Z",
+  "summary": "Malicious code in kafka-roller (PyPI)",
+  "details": "The OpenSSF Package Analysis project identified 'kafka-roller' @ 99.0.2 (pypi) as malicious.\n\nIt is considered malicious because:\n\n- The package communicates with a domain associated with malicious activity.\n",
+  "affected": [
+    {
+      "package": {
+        "name": "kafka-roller",
+        "ecosystem": "PyPI"
+      },
+      "versions": [
+        "99.0.2"
+      ]
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "import_time": "2026-10-08T21:18:09.15889623Z",
+        "modified_time": "2026-10-08T21:11:07Z",
+        "sha256": "ac1ad358c7ec1983efd88a4e93498fcc8a74c746c1e5fff844af271ba21408bb",
+        "source": "ossf-package-analysis",
+        "versions": [
+          "99.0.2"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "OpenSSF: Package Analysis",
+      "contact": [
+        "https://github.com/ossf/package-analysis",
+        "https://openssf.slack.com/channels/package_analysis"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}
