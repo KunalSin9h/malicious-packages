@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T05:33:30Z",
+  "modified": "2026-10-08T05:33:30Z",
+  "summary": "Baileys fork aliases `libsignal` to a third-party scope pinned to floating `latest`",
+  "details": "@lendxntaa/baileys is a fork of the Baileys WhatsApp client that declares `\"libsignal\": \"npm:@bellaxchuu/libsignal-node@latest\"` in package.json. The `libsignal` module id is loaded on the crypto/signal path of the WhatsApp client, so `require('libsignal')` inside this package resolves to code published under the unrelated `@bellaxchuu` scope, pinned to the mutable `latest` tag with no version and no integrity metadata. Every `npm install` can resolve to different bytes chosen by whoever controls that scope, and those bytes execute in-process whenever a consumer of this package uses the WA client. Package metadata further reduces reviewability: `homepage` and `repository.url` both point at a Telegram channel (`https://t.me/lendd3`) rather than a source repository, and the tarball ships a ~130 KB `lib/antiban.js` bundle not present in upstream Baileys.",
+  "affected": [
+    {
+      "package": {
+        "name": "@lendxntaa/baileys",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "9.1.0"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "package.json",
+              "sha256": "caff243d0c070afdf915e70e69fd750eac54f42cc56b6d1e50363120ecc8b203",
+              "tlsh": "d981ea74cd18cea30ac526e8a9bc0042a4b559539ec1fc1cb35547ac8f1e24fb2b9f2d"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/@lendxntaa/baileys/v/9.1.0"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021137",
+        "import_time": "2026-10-08T05:46:11.122421748Z",
+        "modified_time": "2026-10-08T05:33:30Z",
+        "sha256": "0f844237b0db70e56f303c5780ea3a9bd92ae29696bb299ca739961fbc1422a0",
+        "source": "amazon-inspector",
+        "versions": [
+          "9.1.0"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

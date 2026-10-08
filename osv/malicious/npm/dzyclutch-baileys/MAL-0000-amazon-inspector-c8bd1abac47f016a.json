@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T05:43:28Z",
+  "modified": "2026-10-08T05:43:28Z",
+  "summary": "Malicious code in dzyclutch-baileys (npm)",
+  "details": "The package was found to contain malicious code or consuming dependency that contains malicious code",
+  "affected": [
+    {
+      "package": {
+        "name": "dzyclutch-baileys",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "1.1.13"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "lib/Socket/newsletter.js",
+              "sha256": "d9082d5c090ce66d2a150a52e5fe4bd806b077226e8aac11452e921715167263",
+              "tlsh": "e742635a55ba5aa602b37454967ff0e1b321b3033865d8663f8c84020f0b1dda8f3bde"
+            },
+            {
+              "path": "lib/Utils/messages.js",
+              "sha256": "7d4ca2631fc990f3b19e72378c754791c626e6e9eb7bdc075315bec7d6a79160",
+              "tlsh": "3b83518899f70d2e0657b0a7ba8b7014b238d4076548fe25facc42a06fce59897f77c5"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/dzyclutch-baileys/v/1.1.13"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021138",
+        "import_time": "2026-10-08T05:46:11.217048133Z",
+        "modified_time": "2026-10-08T05:43:28Z",
+        "sha256": "c8bd1abac47f016ac53777bcc08d76d15a48330f1c53931e61d6704ce6f3398d",
+        "source": "amazon-inspector",
+        "versions": [
+          "1.1.13"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}
