@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T03:37:22Z",
+  "modified": "2026-10-08T03:37:22Z",
+  "summary": "Dependency-confusion beacon exfiltrates host identifiers to hardcoded bare-IP endpoint on install and require",
+  "details": "The package ships a beacon.cjs that POSTs a JSON payload containing os.hostname(), __dirname (install path), process.cwd(), the package name, and the Node version to the hardcoded bare-IP endpoint http://185.158.107.175:8787/_ah/dc over plain HTTP. The beacon fires automatically from two triggers: the package.json postinstall script invokes `node beacon.cjs`, and the declared main index.js calls `require('./beacon.cjs').fire()` at top level and then re-exports a Proxy returning no-op functions for every property so consuming bundlers do not crash on the empty surface. The destination is a bare IP, not any publisher or vendor domain, is not caller-configurable, and the package exposes no legitimate functionality — the shipped surface exists solely to leak internal hostnames and build paths of any environment that resolves this name, the canonical dependency-confusion reconnaissance shape.",
+  "affected": [
+    {
+      "package": {
+        "name": "browser-metrics-plugin.contrib",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "1.1.0"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "beacon.cjs",
+              "sha256": "ecf3c6444166022b6982dd2a76e79379bc457c5fadb0d5885372c74dd5fcc778",
+              "tlsh": "883161eba8e4a0489eaa7098c54f0409b17bf4069401ab50fd5c82915f6197c33fa8dc"
+            },
+            {
+              "path": "index.js",
+              "sha256": "a86a4da763bbb34c16f361abe7aab66d5df591b66867ac8160041f932159b08d",
+              "tlsh": "2201d0d7225661b10b5221a4978f43c4a3b99d74027941d0d84a9226365108c463b8ee"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "browser-metrics-plugin.contrib-1.1.0.tgz",
+              "hashes": {
+                "sha1": "9b53890a86358be93e0ca6a97f02d54ebc857835",
+                "sha512_sri": "sha512-XxTkgxmVckwBMIt+fI7k1uaGcforrIPmSTCZuMAo1U6QwlNmYDQHCSlNGGBnoFodu/8S27F0JglYxvVe5G8WJQ=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/browser-metrics-plugin.contrib/v/1.1.0"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021110",
+        "import_time": "2026-10-08T03:50:28.532299242Z",
+        "modified_time": "2026-10-08T03:37:22Z",
+        "sha256": "ba360d12dd9384c50c52bb7367dcee82bc20aa303178b4782e9f2fb8b823f5c6",
+        "source": "amazon-inspector",
+        "versions": [
+          "1.1.0"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

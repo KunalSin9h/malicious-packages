@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T03:37:38Z",
+  "modified": "2026-10-08T03:37:38Z",
+  "summary": "troubleshooting@1.1.0 beacons host identifiers to hardcoded bare-IP on install and require",
+  "details": "The package is a stub whose only observable behavior is a phone-home beacon. package.json declares a postinstall script that runs beacon.cjs, and index.js re-triggers the same beacon on require() while exporting a no-op Proxy for any property access. beacon.cjs collects the installer's package name, hostname, install path, current working directory, and Node version and POSTs them as JSON to the hardcoded bare-IP endpoint http://185.158.107.175:8787/_ah/dc over plain HTTP. The destination is not a publisher domain, there is no documented purpose, and the generic name combined with the 'Compatibility shim' description is consistent with a dependency-confusion payload. Installing or importing the package causes installer-host identifiers to be transmitted to an attacker-controlled endpoint and confirms code execution on the target machine.",
+  "affected": [
+    {
+      "package": {
+        "name": "troubleshooting",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "1.1.0"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "beacon.cjs",
+              "sha256": "9469c53670e67c2558a1cda35919a1cd8a44148b6697f639bbfeb6d1bef66531",
+              "tlsh": "363141eba8e1e0489aaa7098c54f1409f17bf4069501af54fd5c82955f6153c33fa8dc"
+            },
+            {
+              "path": "index.js",
+              "sha256": "a86a4da763bbb34c16f361abe7aab66d5df591b66867ac8160041f932159b08d",
+              "tlsh": "2201d0d7225661b10b5221a4978f43c4a3b99d74027941d0d84a9226365108c463b8ee"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "troubleshooting-1.1.0.tgz",
+              "hashes": {
+                "sha1": "09dd7c680ee1ffa680d8ff8fcc34abb2ecf0e288",
+                "sha512_sri": "sha512-QnBgqsanNvHoX4O+m+p+WPXGHLBa6OE+ywYmveOHBx4xdiYKYpB6IoT7cAKrJje6j0RqoYkowwtUn9/B4NBZDw=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/troubleshooting/v/1.1.0"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021111",
+        "import_time": "2026-10-08T03:50:28.586907761Z",
+        "modified_time": "2026-10-08T03:37:38Z",
+        "sha256": "2de8bb87c22c8d38bbe8802eda96645534386329c38faf8599659acd36f63f1f",
+        "source": "amazon-inspector",
+        "versions": [
+          "1.1.0"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}
