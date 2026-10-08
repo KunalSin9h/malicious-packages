@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-07T23:47:12Z",
+  "modified": "2026-10-07T23:47:12Z",
+  "summary": "cdn-img-fetch performs undisclosed on-import fetch from mutable personal GitHub URL",
+  "details": "On require(), index.js unconditionally downloads https://raw.githubusercontent.com/cavecrew/proj/main/banner.jpg to a package-local.cache/banner.jpg. The remote URL points at a personal GitHub account unrelated to the package publisher, on the mutable `main` branch, with no hash or signature verification, and the behavior is not documented in the README (which advertises a caller-supplied URL cache API). The downloaded bytes are written to disk as data only — no code path in the shipped source executes, eval's, requires, or chmod+x's the file — so no installer-harm sink is completed in this version. The pattern is unsafe: import-time outbound network breaks offline/sandboxed environments, and a mutable third-party source can change content after publish without any package update.",
+  "affected": [
+    {
+      "package": {
+        "name": "cdn-img-fetch",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "1.0.3"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "index.js",
+              "sha256": "5c933aa533721fa293b284170dd4611a4d88f88cc89f2d9c28ea4e22305b1f75",
+              "tlsh": "8921c0af1af3713485b3b1f86787985e91a7e1237251d994f5acd2901f820748d82fec"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "cdn-img-fetch-1.0.3.tgz",
+              "hashes": {
+                "sha1": "d19b3cc1ff2faaf5484f1e1c5d9c04260baecba5",
+                "sha512_sri": "sha512-hBlGfEG6/wsfE8NPs4WDgZds+9W5QTCyJYVmV+QxKzUi38dRME4WpgMFu1e1xgw4GCWjxBdm4f7lhKkukC/oVA=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/cdn-img-fetch/v/1.0.3"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021100",
+        "import_time": "2026-10-08T00:52:22.521349519Z",
+        "modified_time": "2026-10-07T23:47:12Z",
+        "sha256": "cc4b99f186837aa0779c50ada7191a08d0252c1999a25e3f0c1ae864b028d088",
+        "source": "amazon-inspector",
+        "versions": [
+          "1.0.3"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}
