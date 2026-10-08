@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T16:54:45Z",
   "modified": "2026-10-08T16:54:45Z",
-  "summary": "Dependency-confusion beacon on install to attacker-controlled OAST host",
-  "details": "The package @dransay/logger@99.0.0 ships a preinstall hook (`node beacon.js`) that fires on `npm install`. The script performs a DNS lookup and HTTPS GET to the interactsh collaborator host `db3klhbi6i9hark1kegg174t38h33b6wt.oast.site`, encoding the package name in the subdomain/path. The version number (99.0.0) is implausibly high for a package with no release history, consistent with a dependency-confusion squat intended to win semver resolution against a private internal name. On install, the beacon discloses the installer's source IP, DNS resolver, and timestamp to a third-party host under the scoped name `@dransay/logger`, confirming successful resolution of this public package in an environment that may have intended to resolve a private `@dransay/*` package. No further payload is executed in this version, but the install-time callback to an attacker-controlled OAST endpoint is the reconnaissance stage of a dependency-confusion attack.",
+  "published": "2026-10-08T16:54:45Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17697",
+  "summary": "Malicious code in @dransay/logger (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (5d4cbd17edce3b0c45619c9af869321807357e3dae1af8aa94835d3143185e85)\nThe package @dransay/logger@99.0.0 ships a preinstall hook (`node beacon.js`) that fires on `npm install`. The script performs a DNS lookup and HTTPS GET to the interactsh collaborator host `db3klhbi6i9hark1kegg174t38h33b6wt.oast.site`, encoding the package name in the subdomain/path. The version number (99.0.0) is implausibly high for a package with no release history, consistent with a dependency-confusion squat intended to win semver resolution against a private internal name. On install, the beacon discloses the installer's source IP, DNS resolver, and timestamp to a third-party host under the scoped name `@dransay/logger`, confirming successful resolution of this public package in an environment that may have intended to resolve a private `@dransay/*` package. No further payload is executed in this version, but the install-time callback to an attacker-controlled OAST endpoint is the reconnaissance stage of a dependency-confusion attack.\n",
   "affected": [
     {
       "package": {
-        "name": "@dransay/logger",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "@dransay/logger"
       },
       "versions": [
         "99.0.0"
@@ -48,6 +49,15 @@
       "url": "https://www.npmjs.com/package/@dransay/logger/v/99.0.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -61,14 +71,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

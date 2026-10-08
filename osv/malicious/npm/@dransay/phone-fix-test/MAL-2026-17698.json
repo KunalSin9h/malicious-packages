@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T16:55:05Z",
   "modified": "2026-10-08T16:55:05Z",
-  "summary": "@dransay/phone-fix-test ships preinstall beacon to third-party OAST collector in dependency-confusion shape",
-  "details": "Package.json declares scripts.preinstall=\"node beacon.js\", which fires automatically on npm install. beacon.js performs a DNS lookup and HTTPS GET to a hardcoded Interactsh/OAST subdomain under oast.site, keyed on the package name, causing the installing host's source IP and resolver metadata to be logged by a non-first-party collector. The package is published under the @dransay scope on the public npm registry at version 99.0.0 — the standard dependency-confusion probe shape (scoped name matching a target organization, implausibly high version to win resolution against an internal package of the same name). Any build system that resolves @dransay/phone-fix-test from public npm will execute the preinstall callout and leak its network identifier to the researcher's OAST endpoint. The README self-labels the behavior as authorized security research, but a self-label does not change the installer-side effect: unconsented install-time exfiltration of host-identifying network metadata to a researcher-controlled collector.",
+  "published": "2026-10-08T16:55:05Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17698",
+  "summary": "Malicious code in @dransay/phone-fix-test (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (e01479e9a6af5de5f6abec6c16007bd3757b52b0e434b38b44d40fde12961c08)\nPackage.json declares scripts.preinstall=\"node beacon.js\", which fires automatically on npm install. beacon.js performs a DNS lookup and HTTPS GET to a hardcoded Interactsh/OAST subdomain under oast.site, keyed on the package name, causing the installing host's source IP and resolver metadata to be logged by a non-first-party collector. The package is published under the @dransay scope on the public npm registry at version 99.0.0 — the standard dependency-confusion probe shape (scoped name matching a target organization, implausibly high version to win resolution against an internal package of the same name). Any build system that resolves @dransay/phone-fix-test from public npm will execute the preinstall callout and leak its network identifier to the researcher's OAST endpoint. The README self-labels the behavior as authorized security research, but a self-label does not change the installer-side effect: unconsented install-time exfiltration of host-identifying network metadata to a researcher-controlled collector.\n",
   "affected": [
     {
       "package": {
-        "name": "@dransay/phone-fix-test",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "@dransay/phone-fix-test"
       },
       "versions": [
         "99.0.0"
@@ -53,6 +54,15 @@
       "url": "https://www.npmjs.com/package/@dransay/phone-fix-test/v/99.0.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -66,14 +76,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

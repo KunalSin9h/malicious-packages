@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T16:54:29Z",
   "modified": "2026-10-08T16:54:29Z",
-  "summary": "Dependency-confusion squat on @dransay/* with preinstall OAST beacon",
-  "details": "@dransay/feature-flags@99.0.0 publishes a scoped name on the public npm registry at an inflated version (99.0.0) designed to win semver resolution against any private internal @dransay/* copy. package.json declares a preinstall hook `node beacon.js`; beacon.js unconditionally performs a DNS lookup and HTTPS GET to the hardcoded interactsh callback host db3klhbi6i9hark1kegg174t38h33b6wt.oast.site on every `npm install`, leaking the installer's public source IP, a timestamp, and confirmation that the scoped name resolved from the public registry to a third-party out-of-band interaction collector. The README self-describes the artifact as a probe of DrAnsay build infrastructure; author self-labeling as research does not change the install-time behavior for any environment whose npm resolves @dransay/* publicly.",
+  "published": "2026-10-08T16:54:29Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17696",
+  "summary": "Malicious code in @dransay/feature-flags (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (cc545bbb96903ee25218d8cab1a7d116d2ceb1ba64a3c929c79e56a6fc8e0585)\n@dransay/feature-flags@99.0.0 publishes a scoped name on the public npm registry at an inflated version (99.0.0) designed to win semver resolution against any private internal @dransay/* copy. package.json declares a preinstall hook `node beacon.js`; beacon.js unconditionally performs a DNS lookup and HTTPS GET to the hardcoded interactsh callback host db3klhbi6i9hark1kegg174t38h33b6wt.oast.site on every `npm install`, leaking the installer's public source IP, a timestamp, and confirmation that the scoped name resolved from the public registry to a third-party out-of-band interaction collector. The README self-describes the artifact as a probe of DrAnsay build infrastructure; author self-labeling as research does not change the install-time behavior for any environment whose npm resolves @dransay/* publicly.\n",
   "affected": [
     {
       "package": {
-        "name": "@dransay/feature-flags",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "@dransay/feature-flags"
       },
       "versions": [
         "99.0.0"
@@ -53,6 +54,15 @@
       "url": "https://www.npmjs.com/package/@dransay/feature-flags/v/99.0.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -66,14 +76,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

