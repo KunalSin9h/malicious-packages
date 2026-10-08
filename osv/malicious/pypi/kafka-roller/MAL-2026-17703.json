@@ -1,0 +1,82 @@
+{
+  "modified": "2026-10-08T21:20:07Z",
+  "published": "2026-10-08T20:52:03Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17703",
+  "summary": "Malicious code in kafka-roller (PyPI)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: ossf-package-analysis (4b68fa52500e16cab90e8038ae96e2ba1be6c448a8caa40ab3e46dc6d3c26436)\nThe OpenSSF Package Analysis project identified 'kafka-roller' @ 99.0.0 (pypi) as malicious.\n\nIt is considered malicious because:\n\n- The package communicates with a domain associated with malicious activity.\n",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "kafka-roller"
+      },
+      "versions": [
+        "99.0.0",
+        "99.0.1",
+        "99.0.2",
+        "99.0.3",
+        "99.0.4"
+      ]
+    }
+  ],
+  "credits": [
+    {
+      "name": "OpenSSF: Package Analysis",
+      "type": "FINDER",
+      "contact": [
+        "https://github.com/ossf/package-analysis",
+        "https://openssf.slack.com/channels/package_analysis"
+      ]
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "import_time": "2026-10-08T21:18:09.008611333Z",
+        "modified_time": "2026-10-08T20:52:03Z",
+        "sha256": "4b68fa52500e16cab90e8038ae96e2ba1be6c448a8caa40ab3e46dc6d3c26436",
+        "source": "ossf-package-analysis",
+        "versions": [
+          "99.0.0"
+        ]
+      },
+      {
+        "import_time": "2026-10-08T21:18:09.088134236Z",
+        "modified_time": "2026-10-08T21:01:49Z",
+        "sha256": "9975eae8f4f212635e09740ba1eee069d57e1d23d9bb46baa49a42eec62a21ca",
+        "source": "ossf-package-analysis",
+        "versions": [
+          "99.0.1"
+        ]
+      },
+      {
+        "import_time": "2026-10-08T21:18:09.15889623Z",
+        "modified_time": "2026-10-08T21:11:07Z",
+        "sha256": "ac1ad358c7ec1983efd88a4e93498fcc8a74c746c1e5fff844af271ba21408bb",
+        "source": "ossf-package-analysis",
+        "versions": [
+          "99.0.2"
+        ]
+      },
+      {
+        "import_time": "2026-10-08T21:18:09.221615738Z",
+        "modified_time": "2026-10-08T21:11:12Z",
+        "sha256": "4ee3520171e39cfacdb27d6977c474b60ac0a9b785052c7ff40bcdcb48e33f40",
+        "source": "ossf-package-analysis",
+        "versions": [
+          "99.0.3"
+        ]
+      },
+      {
+        "import_time": "2026-10-08T21:18:09.281875364Z",
+        "modified_time": "2026-10-08T21:11:14Z",
+        "sha256": "8a94583a1c92780d6fcec5cf1af6f5fda40b4771617ad69d46bf3e4ac6c664bd",
+        "source": "ossf-package-analysis",
+        "versions": [
+          "99.0.4"
+        ]
+      }
+    ]
+  }
+}
