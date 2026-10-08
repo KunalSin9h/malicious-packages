@@ -1,17 +1,18 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T16:25:06Z",
   "modified": "2026-10-08T16:25:07Z",
+  "published": "2026-10-08T16:25:06Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17692",
   "aliases": [
     "GHSA-37h8-m54m-784j"
   ],
-  "summary": "Malware in clickfix_npm_delivery",
-  "details": "Any computer that has this package installed or running should be considered fully compromised. All secrets and keys stored on that computer should be rotated immediately from a different computer. The package should be removed, but as full control of the computer may have been given to an outside entity, there is no guarantee that removing the package will remove all malicious software resulting from installing it.",
+  "summary": "Malicious code in clickfix_npm_delivery (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: ghsa-malware (a92eb0e7964a67df5bb46bd87559b74f949ee053811eb36679aad4d42342f8f3)\nAny computer that has this package installed or running should be considered fully compromised. All secrets and keys stored on that computer should be rotated immediately from a different computer. The package should be removed, but as full control of the computer may have been given to an outside entity, there is no guarantee that removing the package will remove all malicious software resulting from installing it.\n",
   "affected": [
     {
       "package": {
-        "name": "clickfix_npm_delivery",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "clickfix_npm_delivery"
       },
       "versions": [
         "1.0.2",
@@ -24,8 +25,7 @@
             "description": "The product contains code that appears to be malicious in nature.",
             "name": "Embedded Malicious Code"
           }
-        ],
-        "ghsa": "https://github.com/advisories/GHSA-37h8-m54m-784j"
+        ]
       }
     }
   ],
