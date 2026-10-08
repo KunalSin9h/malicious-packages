@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T17:09:08Z",
+  "modified": "2026-10-08T17:09:08Z",
+  "summary": "Postinstall exfiltrates CI/cloud credentials to attacker-controlled host",
+  "details": "The package's postinstall script runs automatically on npm install and collects installer-side host and credential data: hostname, username, network interfaces, the full list of process.env keys, and the values of credential-grade environment variables including AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN, GITHUB_TOKEN, NPM_TOKEN, NODE_AUTH_TOKEN, ACTIONS_ID_TOKEN_REQUEST_TOKEN, ACTIONS_ID_TOKEN_REQUEST_URL, and ACTIONS_RUNTIME_TOKEN. The collected JSON blob is POSTed to oob.s4yhii.com on port 9999 at path /dep-confusion, and hostname/username are additionally beaconed via DNS subdomain lookups under *.dc.oob.s4yhii.com. The package name shape and version (999.0.6) are consistent with a dependency-confusion lure targeting an internal scope. A self-declared 'bug bounty PoC' framing in package metadata does not change the behavior: these credentials grant AWS account access, GitHub repository write, npm publish rights, and GitHub Actions OIDC token exchange on the installing CI system.",
+  "affected": [
+    {
+      "package": {
+        "name": "@galicia-toolkit/spa-build-config",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "999.0.6"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "postinstall.js",
+              "sha256": "45d3323b665ddaebbfd1cef3da16dfbe4100b6d24407be1097a7b0266638c234",
+              "tlsh": "7151c7696bb5612221a3be20902b045041b7f2c72d65f6e1ae1a71742fdc4b242f3dbd"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "spa-build-config-999.0.6.tgz",
+              "hashes": {
+                "sha1": "254090ca92f576c840374686a13cdae69d281206",
+                "sha512_sri": "sha512-7IoSrpqEiGfgVBJwaCLHkJwJFQs0VIeEsLBcMgIT03wO+wU8VfFA8EQVCLSXD94KnU4cDpR1AEHnL4x+d6qTqg=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/@galicia-toolkit/spa-build-config/v/999.0.6"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021225",
+        "import_time": "2026-10-08T17:17:19.744182722Z",
+        "modified_time": "2026-10-08T17:09:08Z",
+        "sha256": "0d7fc29f59609ed2b5c7b54243b740e1daa001f3c76c4d1391edd85a528a4688",
+        "source": "amazon-inspector",
+        "versions": [
+          "999.0.6"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}
