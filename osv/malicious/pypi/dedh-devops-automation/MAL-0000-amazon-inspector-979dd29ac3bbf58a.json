@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T06:06:10Z",
+  "modified": "2026-10-08T06:06:10Z",
+  "summary": "Malicious code in dedh-devops-automation (PyPI)",
+  "details": "The package was found to contain malicious code or consuming dependency that contains malicious code",
+  "affected": [
+    {
+      "package": {
+        "name": "dedh-devops-automation",
+        "ecosystem": "PyPI"
+      },
+      "versions": [
+        "5.8.1"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "package_integrity": [
+            {
+              "filename": "dedh_devops_automation-5.8.1.tar.gz",
+              "hashes": {
+                "blake2b_256": "d9c824c93f03b93f82ad507ac6cccbefd375fcc26eee73d2546151879989e2cc",
+                "md5": "f65e234ee284651f474fd3a7bb895280",
+                "sha256": "a06adae1824365e39d87870381fbffc463bf187310effa0009aadface9d1b0be"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://pypi.org/project/dedh-devops-automation/5.8.1/"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021164",
+        "import_time": "2026-10-08T06:34:03.164618672Z",
+        "modified_time": "2026-10-08T06:06:10Z",
+        "sha256": "979dd29ac3bbf58a1dff9b5c66504d35bb8d5ee6877690f65c4373548b040c79",
+        "source": "amazon-inspector",
+        "versions": [
+          "5.8.1"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

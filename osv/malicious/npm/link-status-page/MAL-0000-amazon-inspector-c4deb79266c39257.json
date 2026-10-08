@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T06:07:34Z",
+  "modified": "2026-10-08T06:07:34Z",
+  "summary": "Malicious code in link-status-page (npm)",
+  "details": "The package was found to contain malicious code or consuming dependency that contains malicious code",
+  "affected": [
+    {
+      "package": {
+        "name": "link-status-page",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "0.0.42"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/link-status-page/v/0.0.42"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021174",
+        "import_time": "2026-10-08T06:34:03.754635822Z",
+        "modified_time": "2026-10-08T06:07:34Z",
+        "sha256": "c4deb79266c392577c923300d466167cdb84d6b08d4abb99704b6d62a813d364",
+        "source": "amazon-inspector",
+        "versions": [
+          "0.0.42"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

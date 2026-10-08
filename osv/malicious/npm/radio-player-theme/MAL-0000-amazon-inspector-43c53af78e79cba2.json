@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T06:09:33Z",
+  "modified": "2026-10-08T06:09:33Z",
+  "summary": "Malicious code in radio-player-theme (npm)",
+  "details": "The package was found to contain malicious code or consuming dependency that contains malicious code",
+  "affected": [
+    {
+      "package": {
+        "name": "radio-player-theme",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "4.0.0"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "package.json",
+              "sha256": "8a59f388bda0b8a888b730296ebc9abc4ef7740113373d9cc0de54e73e641204",
+              "tlsh": "31d0a7144620e2271dc5d7a51d3557057f3a091f26807528576f613c832c5b22af2bee"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/radio-player-theme/v/4.0.0"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021186",
+        "import_time": "2026-10-08T06:34:04.606373441Z",
+        "modified_time": "2026-10-08T06:09:33Z",
+        "sha256": "43c53af78e79cba2d6459a1a5a502cc35af3402aaf5d82588b08c08b8db67922",
+        "source": "amazon-inspector",
+        "versions": [
+          "4.0.0"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

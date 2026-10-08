@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T06:08:50Z",
+  "modified": "2026-10-08T06:08:50Z",
+  "summary": "Malicious code in waie-crash-baileys (npm)",
+  "details": "The package was found to contain malicious code or consuming dependency that contains malicious code",
+  "affected": [
+    {
+      "package": {
+        "name": "waie-crash-baileys",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "1.0.0"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "package.json",
+              "sha256": "0699632aed89dd18e71619087ff1e1a5d7230a4d636c5ce84e35d4a2616fd482",
+              "tlsh": "e981ed34ce588ea30ac516ed99bd0112a47559139ec2f81cb36947ac8f0e15f71b9f3d"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/waie-crash-baileys/v/1.0.0"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021182",
+        "import_time": "2026-10-08T06:34:04.357465904Z",
+        "modified_time": "2026-10-08T06:08:50Z",
+        "sha256": "4cf696b42d5b719f8870858a986262e51c3cfa6d4ed8e0ca2360ed1df354cfd4",
+        "source": "amazon-inspector",
+        "versions": [
+          "1.0.0"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

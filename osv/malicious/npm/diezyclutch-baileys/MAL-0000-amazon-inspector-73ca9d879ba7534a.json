@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T06:13:01Z",
+  "modified": "2026-10-08T06:13:01Z",
+  "summary": "No installer-harm behavior observed in diezyclutch-baileys@8.6.95",
+  "details": "No static or traced findings were produced for this package version. The package name resembles a fork of the Baileys WhatsApp library, but no code paths exhibiting installer-side credential theft, install-time remote code execution, silent relay of caller data to an author-controlled destination, backdoor, or self-propagation were identified in the shipped files.",
+  "affected": [
+    {
+      "package": {
+        "name": "diezyclutch-baileys",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "8.6.95"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/diezyclutch-baileys/v/8.6.95"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021208",
+        "import_time": "2026-10-08T06:34:06.000588685Z",
+        "modified_time": "2026-10-08T06:13:01Z",
+        "sha256": "73ca9d879ba7534af759acc89fd53f6effa5b50960da15242456c8ebb8e6a4f4",
+        "source": "amazon-inspector",
+        "versions": [
+          "8.6.95"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

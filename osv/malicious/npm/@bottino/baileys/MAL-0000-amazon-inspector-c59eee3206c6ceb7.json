@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T06:05:26Z",
+  "modified": "2026-10-08T06:05:26Z",
+  "summary": "Malicious code in @bottino/baileys (npm)",
+  "details": "The package was found to contain malicious code or consuming dependency that contains malicious code",
+  "affected": [
+    {
+      "package": {
+        "name": "@bottino/baileys",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "1.0.12"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "package_integrity": [
+            {
+              "filename": "baileys-1.0.12.tgz",
+              "hashes": {
+                "sha1": "f471392b5021066185927c27ead448646208317a",
+                "sha512_sri": "sha512-M2rdw5YtmUHYk3g42ZnUyJX4kTKpYUaPegLbV0MZLdLw/HShPCNF6XsBTKloy9XURs0KFiMI+1mPvzygoIcP+w=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/@bottino/baileys/v/1.0.12"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021159",
+        "import_time": "2026-10-08T06:34:02.912986005Z",
+        "modified_time": "2026-10-08T06:05:26Z",
+        "sha256": "c59eee3206c6ceb77bfd31ee6d2b82bfa71986502634ffdd728ab0f174c49305",
+        "source": "amazon-inspector",
+        "versions": [
+          "1.0.12"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

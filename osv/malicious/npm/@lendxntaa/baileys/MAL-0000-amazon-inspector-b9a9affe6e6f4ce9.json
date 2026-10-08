@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T06:11:24Z",
+  "modified": "2026-10-08T06:11:24Z",
+  "summary": "Malicious code in @lendxntaa/baileys (npm)",
+  "details": "The package was found to contain malicious code or consuming dependency that contains malicious code",
+  "affected": [
+    {
+      "package": {
+        "name": "@lendxntaa/baileys",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "0.0.7"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "lib/Utils/generics.js",
+              "sha256": "b4214ae766b75ba70ca58b9afc975e73df363447bf3539ab23215747add7b0c1",
+              "tlsh": "7052d6516df3513906a3e1ea6b5fe016b339a4233609cce4bd1c83208f815a8d6e77d9"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "baileys-0.0.7.tgz",
+              "hashes": {
+                "sha1": "e2e838705b92098e2d728e92262652da6a7729b7",
+                "sha512_sri": "sha512-RujSLKRRQSwuhl1FtsNIWCGymMP/zhJDcnDhwT9AEBQSDEYV2sQU6gYNfnkObevAqrdh5JORtQ1/sVgaj1XrQw=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/@lendxntaa/baileys/v/0.0.7"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021198",
+        "import_time": "2026-10-08T06:34:05.423321946Z",
+        "modified_time": "2026-10-08T06:11:24Z",
+        "sha256": "b9a9affe6e6f4ce9f9785cf40699d42baa963b9a8457b3a306d0b85d741dc76c",
+        "source": "amazon-inspector",
+        "versions": [
+          "0.0.7"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}
