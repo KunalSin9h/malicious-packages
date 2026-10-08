@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T21:20:45Z",
+  "modified": "2026-10-08T21:20:45Z",
+  "summary": "Install-time host-identifier beacon to hardcoded bare-IP collector",
+  "details": "On npm install, the package runs `node beacon.cjs` via a postinstall script that POSTs a JSON payload — hostname, install path, current working directory, and Node version — to the hardcoded plaintext endpoint http://185.158.107.175:8787/_ah/dc. The same beacon is also fired on require() from index.js. The package itself ships no functionality: index.js exports a Proxy that returns a no-op for any property access, so consuming builds continue without errors while the beacon has already transmitted installer identifiers. The destination is a bare IP over HTTP unrelated to any publisher domain, with no user opt-in and no documented purpose, matching the dependency-confusion / typosquat reconnaissance pattern.",
+  "affected": [
+    {
+      "package": {
+        "name": "wie888r",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "2.0.1"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "beacon.cjs",
+              "sha256": "74486ba8bcbf05398d39cc7247ed13bbea7b7b8d622a429c2aeff3ca47155e90",
+              "tlsh": "0e314feba8e1e048aaab7098c54f5409b27af4069501ab50f95c82959f6193c33fa8dc"
+            },
+            {
+              "path": "index.js",
+              "sha256": "a86a4da763bbb34c16f361abe7aab66d5df591b66867ac8160041f932159b08d",
+              "tlsh": "2201d0d7225661b10b5221a4978f43c4a3b99d74027941d0d84a9226365108c463b8ee"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "wie888r-2.0.1.tgz",
+              "hashes": {
+                "sha1": "424d81dc199474d95251188dcbf737119735fa0b",
+                "sha512_sri": "sha512-oQpw5K0c0E57ZUXJka+aK3ZAljZ71NlEXqZxgm8Ukn90ZeN7D0yzRGqgkOmuqlrBiuH362gdcRKVn1/SdBR1XQ=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/wie888r/v/2.0.1"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021246",
+        "import_time": "2026-10-08T21:42:56.010296378Z",
+        "modified_time": "2026-10-08T21:20:45Z",
+        "sha256": "b9f4b05c5866a2cd6c1410b5a54841b79ed5f1a82f3999343c09f28c96c1dbb6",
+        "source": "amazon-inspector",
+        "versions": [
+          "2.0.1"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

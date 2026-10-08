@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T21:19:20Z",
+  "modified": "2026-10-08T21:19:20Z",
+  "summary": "Stub package beacons host identifiers to hardcoded bare-IP endpoint on install and require",
+  "details": "The package ships no real functionality — index.js exports a Proxy that returns no-op functions for every accessed property. Its only effect is a beacon: the postinstall hook runs beacon.cjs, and requiring index.js also triggers the same beacon. The beacon POSTs installer identifiers (hostname, install path, cwd, node version) over plain HTTP to the hardcoded bare-IP endpoint http://185.158.107.175:8787/_ah/dc. The destination is a bare IP unrelated to any declared publisher, the transport is cleartext, and the callback fires automatically on default `npm install` as well as on `require()` with no caller opt-in. The self-described 'compatibility shim' framing does not match the shipped behavior; comments in the code describe the callback as 'proof' of install, consistent with a dependency-confusion or research-callback payload shape.",
+  "affected": [
+    {
+      "package": {
+        "name": "xblaxw",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "2.0.0"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "beacon.cjs",
+              "sha256": "d8ec492e8a5266515bc6103067a07f98dc8644824089b9d32a14a435f43812ea",
+              "tlsh": "73314feba8e1a048aaab7098c54f1409b27bf4069501ab50f95c82959f6193c37fa8dc"
+            },
+            {
+              "path": "index.js",
+              "sha256": "a86a4da763bbb34c16f361abe7aab66d5df591b66867ac8160041f932159b08d",
+              "tlsh": "2201d0d7225661b10b5221a4978f43c4a3b99d74027941d0d84a9226365108c463b8ee"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "xblaxw-2.0.0.tgz",
+              "hashes": {
+                "sha1": "2ccb9289a71752b71ab3b25e95109f500d5b1f20",
+                "sha512_sri": "sha512-Ms4jzKOM6QhgbT2ocpg4gWEl6sOFpEpgqVHxk5FNZ0s3eo375LcQV95VtGYpJCaBrwWGO0VIVQSeY3+TMj5vDg=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/xblaxw/v/2.0.0"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021236",
+        "import_time": "2026-10-08T21:42:55.246922945Z",
+        "modified_time": "2026-10-08T21:19:20Z",
+        "sha256": "110314989632807fad14e5fd2256199e22923b20df9f841ef8cce1480f13a693",
+        "source": "amazon-inspector",
+        "versions": [
+          "2.0.0"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

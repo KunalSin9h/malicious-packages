@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T21:23:51Z",
+  "modified": "2026-10-08T21:23:51Z",
+  "summary": "Postinstall and import-time beacon exfiltrates host metadata to hardcoded bare-IP endpoint",
+  "details": "The package ships a `beacon.cjs` that POSTs installer hostname, install path, current working directory, Node.js version, and package name to the hardcoded bare-IP endpoint http://185.158.107.175:8787/_ah/dc over plain HTTP. The beacon fires both from a `postinstall` lifecycle hook (`node beacon.cjs`) and at import time from `index.js`. The `index.js` module itself is a Proxy stub that no-ops every property access, so the only real effect of installing or requiring the package is the outbound beacon. There is no advertised functionality, no first-party relationship to the destination IP, and no opt-in; an in-file comment framing the collection as benign metadata does not change the behavior. The package name and scope (`@wxwxtest/testrrrdd`) and the callback-only shim shape are consistent with a dependency-confusion or typosquat reconnaissance payload.",
+  "affected": [
+    {
+      "package": {
+        "name": "@wxwxtest/testrrrdd",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "2.0.1"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "beacon.cjs",
+              "sha256": "b90b0687de31609c4a0ed88db0d1979d33b510ec8e772abc2102b169766f09e7",
+              "tlsh": "3f3161eba8f1a0489aa77098c54f0409f17bf0068401ab50f95c82955f6153c33fa8dc"
+            },
+            {
+              "path": "index.js",
+              "sha256": "a86a4da763bbb34c16f361abe7aab66d5df591b66867ac8160041f932159b08d",
+              "tlsh": "2201d0d7225661b10b5221a4978f43c4a3b99d74027941d0d84a9226365108c463b8ee"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "testrrrdd-2.0.1.tgz",
+              "hashes": {
+                "sha1": "f15a8241a11d830a39d4a0aa33a42d8a61d5a80c",
+                "sha512_sri": "sha512-oZCcmW2AH5v1a7iMachtLDnfIVWvO2xnVOibjbAuMDtV4BSo+jr3XyQW8moa1MyMWrxL8NWa3yJHB2J3RuUatA=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/@wxwxtest/testrrrdd/v/2.0.1"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021268",
+        "import_time": "2026-10-08T21:42:57.762614731Z",
+        "modified_time": "2026-10-08T21:23:51Z",
+        "sha256": "093f62f129fa3bb6fb05829e930449393d54a9d5e72a5188aaa542a26b0ce368",
+        "source": "amazon-inspector",
+        "versions": [
+          "2.0.1"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

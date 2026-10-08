@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T21:22:24Z",
+  "modified": "2026-10-08T21:22:24Z",
+  "summary": "testrrrd postinstall + import-time beacon to hardcoded bare-IP HTTP endpoint",
+  "details": "testrrrd@2.0.1 is a no-op stub whose only functional behavior is calling back to a hardcoded operator endpoint. beacon.cjs collects host metadata (hostname, install path, cwd, Node.js version) and POSTs it as JSON to http://185.158.107.175:8787/_ah/dc over plain HTTP. The beacon fires from a postinstall lifecycle hook so it runs automatically on npm install, and index.js also calls require('./beacon.cjs').fire() at module load, so any require() of the package re-triggers the callback. index.js otherwise exports a Proxy of no-op functions, so the package provides no advertised functionality beyond the beacon. The destination is a bare IPv4 address with no TLS and is not user-configurable, and the hostname + filesystem-path fields identify the installer host to the endpoint operator.",
+  "affected": [
+    {
+      "package": {
+        "name": "testrrrd",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "2.0.1"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "beacon.cjs",
+              "sha256": "e2b8e936f7052e6459566e71c32ecd56ec6cfdf468a892ecc4ca0cf8081bc6c7",
+              "tlsh": "d8316feba8e1a008aaab7098c54f0409b27af0068401ab50f95c82959f6193c33fa8dc"
+            },
+            {
+              "path": "index.js",
+              "sha256": "a86a4da763bbb34c16f361abe7aab66d5df591b66867ac8160041f932159b08d",
+              "tlsh": "2201d0d7225661b10b5221a4978f43c4a3b99d74027941d0d84a9226365108c463b8ee"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "testrrrd-2.0.1.tgz",
+              "hashes": {
+                "sha1": "5844a34e10c548224d13f2dd43b968ab57d7c22b",
+                "sha512_sri": "sha512-ZRKCHxstwdic824V5aN41KP0937E0zftGeL3kdwq6xo3T4Jjbt1/JhbKo2WoaH0xVCP/n+58xuZPpWu0mo+trA=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/testrrrd/v/2.0.1"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021258",
+        "import_time": "2026-10-08T21:42:57.027994051Z",
+        "modified_time": "2026-10-08T21:22:24Z",
+        "sha256": "f3acddc2a24a30fe2bbb66b02f5da938bb888824a127915df5c86faec95ffe10",
+        "source": "amazon-inspector",
+        "versions": [
+          "2.0.1"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

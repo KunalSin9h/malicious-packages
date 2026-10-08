@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T21:23:29Z",
+  "modified": "2026-10-08T21:23:29Z",
+  "summary": "Dependency-confusion probe beacons installer host identifiers to hardcoded bare-IP endpoint",
+  "details": "npm package xblaxw@99.0.1 ships a postinstall hook (`node beacon.cjs`) and an `index.js` that both POST installer host identifiers (hostname, install path, cwd, Node version) to the hardcoded cleartext endpoint http://185.158.107.175:8787/_ah/dc. The main module exports a Proxy that returns no-ops for every property access, and the package is published as a generic 'Compatibility shim.' at version 99.0.1 — the structural shape of a dependency-confusion probe designed to win resolution against an internal package name and report back when it is installed inside a build. The beacon fires both at `npm install` time via the postinstall script and on `require()` of the module, sending installer-side reconnaissance data to a bare-IP destination unrelated to any publisher, over plain HTTP with no user configuration.",
+  "affected": [
+    {
+      "package": {
+        "name": "xblaxw",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "99.0.1"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "beacon.cjs",
+              "sha256": "d8ec492e8a5266515bc6103067a07f98dc8644824089b9d32a14a435f43812ea",
+              "tlsh": "73314feba8e1a048aaab7098c54f1409b27bf4069501ab50f95c82959f6193c37fa8dc"
+            },
+            {
+              "path": "index.js",
+              "sha256": "a86a4da763bbb34c16f361abe7aab66d5df591b66867ac8160041f932159b08d",
+              "tlsh": "2201d0d7225661b10b5221a4978f43c4a3b99d74027941d0d84a9226365108c463b8ee"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "xblaxw-99.0.1.tgz",
+              "hashes": {
+                "sha1": "7129b0e06c26362a28bcbcd9afecdb2cd7fe3ab5",
+                "sha512_sri": "sha512-dS/rETaOf6GLdrT6Xtmc9Wucpz+Q3NTuW2OUALjFQQ06rr9mn1+3zL4uupidF13ba3pIwJZA3L6E03MvhdEMnw=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/xblaxw/v/99.0.1"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021265",
+        "import_time": "2026-10-08T21:42:57.54914459Z",
+        "modified_time": "2026-10-08T21:23:29Z",
+        "sha256": "a67740f8c8fac71eb25c053bf07b93f3bc7b699aca1889831c2d64633e4f9d45",
+        "source": "amazon-inspector",
+        "versions": [
+          "99.0.1"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

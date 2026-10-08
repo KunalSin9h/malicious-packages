@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T21:21:00Z",
+  "modified": "2026-10-08T21:21:00Z",
+  "summary": "wie888r ships install/import-time beacon exfiltrating host metadata to hardcoded bare IP",
+  "details": "wie888r@1.0.0 is a stub package whose only real behavior is a telemetry beacon. The postinstall script beacon.cjs POSTs the installer's package name, hostname, install path, current working directory, and Node version to the hardcoded bare-IP endpoint http://185.158.107.175:8787/_ah/dc over cleartext HTTP. The same fire() routine is also invoked from index.js at the top level, so the exfiltration triggers both on `npm install` (via postinstall) and on `require()` of the module. index.js otherwise exports a Proxy of no-op functions and the package.json description is a generic 'Compatibility shim.', consistent with a dependency-confusion or typosquat probe artifact rather than a functional library. The destination is a bare IPv4 address unrelated to any declared publisher or homepage, with no TLS and no caller-configurable override.",
+  "affected": [
+    {
+      "package": {
+        "name": "wie888r",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "1.0.0"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "beacon.cjs",
+              "sha256": "74486ba8bcbf05398d39cc7247ed13bbea7b7b8d622a429c2aeff3ca47155e90",
+              "tlsh": "0e314feba8e1e048aaab7098c54f5409b27af4069501ab50f95c82959f6193c33fa8dc"
+            },
+            {
+              "path": "index.js",
+              "sha256": "a86a4da763bbb34c16f361abe7aab66d5df591b66867ac8160041f932159b08d",
+              "tlsh": "2201d0d7225661b10b5221a4978f43c4a3b99d74027941d0d84a9226365108c463b8ee"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "wie888r-1.0.0.tgz",
+              "hashes": {
+                "sha1": "8430317c746cd5520f92c9ca8868b5a95c63f31d",
+                "sha512_sri": "sha512-KrB74yy7HeetOwIxmlcx8m440b6eD96zFe0hGGWfZuuB4Ry5UbjFeEkESMDmjrFx75slvqc51Q1c/n1InW6n3g=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/wie888r/v/1.0.0"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021248",
+        "import_time": "2026-10-08T21:42:56.144006922Z",
+        "modified_time": "2026-10-08T21:21:00Z",
+        "sha256": "3823186f8957f645e69918ddc119533525da2b2f4ade832708fca49c82c29497",
+        "source": "amazon-inspector",
+        "versions": [
+          "1.0.0"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

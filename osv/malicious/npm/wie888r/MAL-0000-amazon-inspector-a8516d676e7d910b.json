@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T21:24:09Z",
+  "modified": "2026-10-08T21:24:09Z",
+  "summary": "Postinstall and import-time beacon posts host identifiers to a hardcoded bare-IP endpoint",
+  "details": "The package is a stub whose only purpose is to run a reconnaissance beacon. The package.json postinstall script runs `node beacon.cjs`, and the main entry (`index.js`) also calls `require('./beacon.cjs').fire()` behind a Proxy no-op shim so bundlers do not crash before the callback fires. `beacon.cjs` collects host identifiers (hostname, install path, process.cwd(), process.version) and POSTs them in plain HTTP to the hardcoded bare-IP endpoint http://185.158.107.175:8787/_ah/dc. The destination is not a registry, publisher domain, or documented service, and the behavior fires automatically both on `npm install` and on `require()` without caller consent. The package provides no documented functionality beyond the beacon.",
+  "affected": [
+    {
+      "package": {
+        "name": "wie888r",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "0.0.1"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "beacon.cjs",
+              "sha256": "74486ba8bcbf05398d39cc7247ed13bbea7b7b8d622a429c2aeff3ca47155e90",
+              "tlsh": "0e314feba8e1e048aaab7098c54f5409b27af4069501ab50f95c82959f6193c33fa8dc"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "wie888r-0.0.1.tgz",
+              "hashes": {
+                "sha1": "d0184cf28fadddc67a2b4f72816edd3635266bfd",
+                "sha512_sri": "sha512-v0lV1WWnxtbinScg7Jk4nBNDhGMVSRA5ad3ErFwzMm/a1dJitLlYdaknLX3aNK4GioXDY/PYRcNAwf/OJury9Q=="
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/wie888r/v/0.0.1"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021270",
+        "import_time": "2026-10-08T21:42:57.948073518Z",
+        "modified_time": "2026-10-08T21:24:09Z",
+        "sha256": "a8516d676e7d910b74f4b127bc8162ea7cba5c99fff27664f3e5197404cbb48f",
+        "source": "amazon-inspector",
+        "versions": [
+          "0.0.1"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}
