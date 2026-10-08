@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T03:37:53Z",
   "modified": "2026-10-08T03:37:53Z",
-  "summary": "wix-ssr-thunderbolt-grid-polyfill ships SSR recon/exfiltration bundles beaconing to webhook.site",
-  "details": "The package ships two minified bundles — dist/poc-model.bundle.min.js and dist/poc-bootstrap.bundle.min.js — that are wired as the model and bootstrap batches in rb_wixui.thunderbolt.manifest.min.json under baseURL https://static.parastorage.com/unpkg/wix-ssr-thunderbolt-grid-polyfill@0.1.0/dist/. When the manifest resolves inside a Wix Thunderbolt SSR worker, poc-model.bundle.min.js collects Node version, cwd, hostname, POD_IP, uid, os.networkInterfaces() output, the contents of /etc/hosts and /etc/resolv.conf, environment variable names, a DNS lookup of bo.wix.com, and the response bodies of a localhost port scan across 40+ ports (including 80, 443, 3000), and POSTs the aggregate via https.request to https://webhook.site/69bcd627-1871-4dda-b880-83b37ceac418. poc-bootstrap.bundle.min.js issues companion fetch and https.request beacons to the same webhook.site URL with src=ssr-bootstrap tags. The package has no legitimate Wix SSR polyfill functionality; its sole shipped behavior is host, filesystem, network, and internal-service reconnaissance against the SSR environment, exfiltrated to an attacker-controlled webhook. The self-label 'Security research PoC' does not change the behavior — the destination is a non-first-party collector and the data read includes credential-adjacent SSR internals.",
+  "published": "2026-10-08T03:37:53Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17664",
+  "summary": "Malicious code in wix-ssr-thunderbolt-grid-polyfill (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (b6e0013701f6ab53085883b09092f0cd5ae9aaaab51a9f0e9de5aa68946ae9e1)\nThe package ships two minified bundles — dist/poc-model.bundle.min.js and dist/poc-bootstrap.bundle.min.js — that are wired as the model and bootstrap batches in rb_wixui.thunderbolt.manifest.min.json under baseURL https://static.parastorage.com/unpkg/wix-ssr-thunderbolt-grid-polyfill@0.1.0/dist/. When the manifest resolves inside a Wix Thunderbolt SSR worker, poc-model.bundle.min.js collects Node version, cwd, hostname, POD_IP, uid, os.networkInterfaces() output, the contents of /etc/hosts and /etc/resolv.conf, environment variable names, a DNS lookup of bo.wix.com, and the response bodies of a localhost port scan across 40+ ports (including 80, 443, 3000), and POSTs the aggregate via https.request to https://webhook.site/69bcd627-1871-4dda-b880-83b37ceac418. poc-bootstrap.bundle.min.js issues companion fetch and https.request beacons to the same webhook.site URL with src=ssr-bootstrap tags. The package has no legitimate Wix SSR polyfill functionality; its sole shipped behavior is host, filesystem, network, and internal-service reconnaissance against the SSR environment, exfiltrated to an attacker-controlled webhook. The self-label 'Security research PoC' does not change the behavior — the destination is a non-first-party collector and the data read includes credential-adjacent SSR internals.\n",
   "affected": [
     {
       "package": {
-        "name": "wix-ssr-thunderbolt-grid-polyfill",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "wix-ssr-thunderbolt-grid-polyfill"
       },
       "versions": [
         "0.1.0"
@@ -58,6 +59,15 @@
       "url": "https://www.npmjs.com/package/wix-ssr-thunderbolt-grid-polyfill/v/0.1.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -71,14 +81,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

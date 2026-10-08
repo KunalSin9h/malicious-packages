@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T03:43:45Z",
   "modified": "2026-10-08T03:43:45Z",
-  "summary": "hardhat-deep executes obfuscated 4.5 MB payload on import under a trojanised pino/hardhat cover",
-  "details": "The npm package hardhat-deep@2.0.1 is a trojanised shell. Its tarball copies the pino logger source tree (README, SECURITY.md, index.d.ts, lib/proto.js, lib/transport.js, lib/worker.js, lib/levels.js, lib/multistream.js, etc.) verbatim, while the package name and manifest description target the Hardhat ecosystem. The only novel file is lib/config.js, a single-line 4,499,968-byte obfuscator.io bundle with a 26,234-entry rotated string array, two decoder functions, hex-encoded strings and control-flow flattening. The package's top-level index.js is modified from pino's original to unconditionally `require('./lib/config')`, so any consumer that `require`s or `import`s hardhat-deep executes this opaque payload inside the installer's Node process. The exported middleware is a no-op cover with no logger functionality, so running the obfuscated blob is the only effect of installing or loading the package. The author identity (Robert King <hello@jsonspack.com>, jsonspack.com) is unrelated to either Hardhat or pinojs.",
+  "published": "2026-10-08T03:43:45Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17659",
+  "summary": "Malicious code in hardhat-deep (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (fde0a4a0ec197ee1aab9acf20ea157268b553fdb5669c545c27d92cbf89fe304)\nThe npm package hardhat-deep@2.0.1 is a trojanised shell. Its tarball copies the pino logger source tree (README, SECURITY.md, index.d.ts, lib/proto.js, lib/transport.js, lib/worker.js, lib/levels.js, lib/multistream.js, etc.) verbatim, while the package name and manifest description target the Hardhat ecosystem. The only novel file is lib/config.js, a single-line 4,499,968-byte obfuscator.io bundle with a 26,234-entry rotated string array, two decoder functions, hex-encoded strings and control-flow flattening. The package's top-level index.js is modified from pino's original to unconditionally `require('./lib/config')`, so any consumer that `require`s or `import`s hardhat-deep executes this opaque payload inside the installer's Node process. The exported middleware is a no-op cover with no logger functionality, so running the obfuscated blob is the only effect of installing or loading the package. The author identity (Robert King \u003chello@jsonspack.com\u003e, jsonspack.com) is unrelated to either Hardhat or pinojs.\n",
   "affected": [
     {
       "package": {
-        "name": "hardhat-deep",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "hardhat-deep"
       },
       "versions": [
         "2.0.1"
@@ -58,6 +59,15 @@
       "url": "https://www.npmjs.com/package/hardhat-deep/v/2.0.1"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -71,14 +81,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

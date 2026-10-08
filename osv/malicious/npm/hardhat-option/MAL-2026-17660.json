@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T03:38:47Z",
   "modified": "2026-10-08T03:38:47Z",
-  "summary": "hardhat-option executes a 4.5MB obfuscated payload on require while impersonating pino",
-  "details": "The package's declared main index.js immediately requires./lib/config, which is a single-line ~4.5MB obfuscator.io-style bundle (26,234-entry hex-escaped string array, rotated decoder wrappers, control-flow flattening) whose top-level IIFE executes as soon as the module is loaded. The exported middleware is a no-op, so the sole effect of require('hardhat-option') is to run the opaque payload with the installer's privileges. The package also presents a false identity: the name is hardhat-option but README, index.d.ts and lib/* are copied from pinojs/pino and index.js re-exports module.exports.pino = middleware to satisfy consumers expecting pino's API, while package.json attributes authorship to 'Robert King <hello@jsonspack.com>' with an unrelated bugs URL at jsonspack.com. A multi-megabyte, fully obfuscated module body that auto-executes on import inside a package falsely wrapped in another project's identity is the canonical loader/dropper shape.",
+  "published": "2026-10-08T03:38:47Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17660",
+  "summary": "Malicious code in hardhat-option (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (2d460f6c739361d793fbc66b2aa32d1d9ab6fe0df4caefe13c590f40d05d5277)\nThe package's declared main index.js immediately requires./lib/config, which is a single-line ~4.5MB obfuscator.io-style bundle (26,234-entry hex-escaped string array, rotated decoder wrappers, control-flow flattening) whose top-level IIFE executes as soon as the module is loaded. The exported middleware is a no-op, so the sole effect of require('hardhat-option') is to run the opaque payload with the installer's privileges. The package also presents a false identity: the name is hardhat-option but README, index.d.ts and lib/* are copied from pinojs/pino and index.js re-exports module.exports.pino = middleware to satisfy consumers expecting pino's API, while package.json attributes authorship to 'Robert King \u003chello@jsonspack.com\u003e' with an unrelated bugs URL at jsonspack.com. A multi-megabyte, fully obfuscated module body that auto-executes on import inside a package falsely wrapped in another project's identity is the canonical loader/dropper shape.\n",
   "affected": [
     {
       "package": {
-        "name": "hardhat-option",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "hardhat-option"
       },
       "versions": [
         "2.0.1"
@@ -53,6 +54,15 @@
       "url": "https://www.npmjs.com/package/hardhat-option/v/2.0.1"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -66,14 +76,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

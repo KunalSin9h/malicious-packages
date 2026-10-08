@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T03:43:57Z",
   "modified": "2026-10-08T03:43:57Z",
-  "summary": "hardhat-pack ships 4.4MB obfuscated payload executed on require under pino-impersonation cover",
-  "details": "The package is published as `hardhat-pack`, a name shape that resembles the Hardhat Ethereum tooling ecosystem, but its README, LICENSE, TypeScript declarations and library source are copied verbatim from the unrelated `pino` logger. The only material divergence from upstream pino is that `index.js` adds `const config = require('./lib/config');` at the top level, and `lib/config.js` is a single-line 4.4MB obfuscator.io payload: an IIFE with a ~26,000-entry hex-escaped string array and a rotating decoder. Nothing in the shipped source references `config` for a legitimate purpose, and the package carries no native build, no vendored SDK, and no other justification for a multi-megabyte opaque blob. The package also declares `axios` as a runtime dependency, consistent with network exfiltration or remote fetch from inside the decoded payload. Any process that imports `hardhat-pack` hands the opaque payload to the JavaScript engine on first require.",
+  "published": "2026-10-08T03:43:57Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17661",
+  "summary": "Malicious code in hardhat-pack (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (b39859996d5d333a776d3ed42a203450ea588adefd91ba46a25a0bef0b17cf02)\nThe package is published as `hardhat-pack`, a name shape that resembles the Hardhat Ethereum tooling ecosystem, but its README, LICENSE, TypeScript declarations and library source are copied verbatim from the unrelated `pino` logger. The only material divergence from upstream pino is that `index.js` adds `const config = require('./lib/config');` at the top level, and `lib/config.js` is a single-line 4.4MB obfuscator.io payload: an IIFE with a ~26,000-entry hex-escaped string array and a rotating decoder. Nothing in the shipped source references `config` for a legitimate purpose, and the package carries no native build, no vendored SDK, and no other justification for a multi-megabyte opaque blob. The package also declares `axios` as a runtime dependency, consistent with network exfiltration or remote fetch from inside the decoded payload. Any process that imports `hardhat-pack` hands the opaque payload to the JavaScript engine on first require.\n",
   "affected": [
     {
       "package": {
-        "name": "hardhat-pack",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "hardhat-pack"
       },
       "versions": [
         "2.0.1"
@@ -53,6 +54,15 @@
       "url": "https://www.npmjs.com/package/hardhat-pack/v/2.0.1"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -66,14 +76,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

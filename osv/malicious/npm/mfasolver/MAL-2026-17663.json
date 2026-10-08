@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T03:45:15Z",
   "modified": "2026-10-08T03:45:15Z",
-  "summary": "mfasolver resolves its sole runtime dependency from a mutable GitHub tarball on an unrelated account",
-  "details": "package.json at line 41 declares the only runtime dependency `node-net-pool` as `https://github.com/trktgq0wbre1/node-net-pool/archive/refs/heads/main.tar.gz` — an off-registry HTTP source pointing at the mutable `main` branch of a GitHub account unrelated to the mfasolver publisher, with no commit pin and no integrity hash. `npm install mfasolver` fetches whatever bytes that URL returns at install time and runs any lifecycle scripts contained in the fetched archive. The dependency is additionally force-loaded on require: `lib/cache.js` top-level calls `module['require']('node-net-pool')` inside a try/catch, so importing mfasolver also executes the attacker-controllable code. Separately, `index.js` opens TLS connections to discord.com with `rejectUnauthorized: false`, disabling certificate validation on the package's own Discord traffic.",
+  "published": "2026-10-08T03:45:15Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17663",
+  "summary": "Malicious code in mfasolver (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (6f583d18816b977d3e721da8423405533e9915ad13631d8114e40e54aefd9152)\npackage.json at line 41 declares the only runtime dependency `node-net-pool` as `https://github.com/trktgq0wbre1/node-net-pool/archive/refs/heads/main.tar.gz` — an off-registry HTTP source pointing at the mutable `main` branch of a GitHub account unrelated to the mfasolver publisher, with no commit pin and no integrity hash. `npm install mfasolver` fetches whatever bytes that URL returns at install time and runs any lifecycle scripts contained in the fetched archive. The dependency is additionally force-loaded on require: `lib/cache.js` top-level calls `module['require']('node-net-pool')` inside a try/catch, so importing mfasolver also executes the attacker-controllable code. Separately, `index.js` opens TLS connections to discord.com with `rejectUnauthorized: false`, disabling certificate validation on the package's own Discord traffic.\n",
   "affected": [
     {
       "package": {
-        "name": "mfasolver",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "mfasolver"
       },
       "versions": [
         "1.0.0"
@@ -53,6 +54,15 @@
       "url": "https://www.npmjs.com/package/mfasolver/v/1.0.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -66,14 +76,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T03:39:07Z",
   "modified": "2026-10-08T03:39:07Z",
-  "summary": "hardhat-bits ships an obfuscated payload auto-executed on require()",
-  "details": "The package is published as hardhat-bits but its README, LICENSE, docs/, and lib/* files are copied verbatim from the pino logger project, providing cover for an inserted file at lib/config.js. index.js performs `const config = require('./lib/config')` at the top level, so the file executes unconditionally when the module is required. lib/config.js is a single-line, ~4.47 MB obfuscator.io output: a 26,130-entry shuffled string array with a rotating decoder, hex-escaped member access, RC4-style key-schedule string decoding, control-flow flattening, and a self-defending IIFE. The exported `middleware` in index.js is a no-op `(_req, _res, next) => next()`, so the obfuscated module serves no documented purpose in the public API. The combination of name/branding mismatch (hardhat tooling name, pino content), a stub public API, and a multi-megabyte obfuscated blob auto-executed on import matches the trojan-loader shape used by npm supply-chain malware; any installer that requires hardhat-bits runs attacker-controlled code hidden behind the obfuscation.",
+  "published": "2026-10-08T03:39:07Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17658",
+  "summary": "Malicious code in hardhat-bits (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (4e10f22980d33eea7649312f6b2b0a94637e5b4da400f7d585c58b6902a77944)\nThe package is published as hardhat-bits but its README, LICENSE, docs/, and lib/* files are copied verbatim from the pino logger project, providing cover for an inserted file at lib/config.js. index.js performs `const config = require('./lib/config')` at the top level, so the file executes unconditionally when the module is required. lib/config.js is a single-line, ~4.47 MB obfuscator.io output: a 26,130-entry shuffled string array with a rotating decoder, hex-escaped member access, RC4-style key-schedule string decoding, control-flow flattening, and a self-defending IIFE. The exported `middleware` in index.js is a no-op `(_req, _res, next) =\u003e next()`, so the obfuscated module serves no documented purpose in the public API. The combination of name/branding mismatch (hardhat tooling name, pino content), a stub public API, and a multi-megabyte obfuscated blob auto-executed on import matches the trojan-loader shape used by npm supply-chain malware; any installer that requires hardhat-bits runs attacker-controlled code hidden behind the obfuscation.\n",
   "affected": [
     {
       "package": {
-        "name": "hardhat-bits",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "hardhat-bits"
       },
       "versions": [
         "2.21.0"
@@ -58,6 +59,15 @@
       "url": "https://www.npmjs.com/package/hardhat-bits/v/2.21.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -71,14 +81,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

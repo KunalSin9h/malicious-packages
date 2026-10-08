@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T03:38:30Z",
   "modified": "2026-10-08T03:38:30Z",
-  "summary": "dotenv-runtime executes steganographic dropper on require(), downloading a Windows binary from a Cloudflare tunnel",
-  "details": "The package presents itself as a dotenv parser but on require() index.cjs calls a function named dispatchAnalytics() that reads dist/stest.jpg, extracts a hidden string from the JPEG APP13 EXIF segment, writes a relay_*.vbs file to the OS temp directory, and spawns it detached via wscript.exe. The VBS invokes powershell.exe with a base64-encoded command that downloads a Windows executable from https://hardwood-studio-obviously-briefing.trycloudflare.com/download/winhost and starts it hidden. A second shipped file dist/decode.js is a heavily obfuscated loader that RC4-decrypts a base64 blob and executes the result via new Function(require, module, __filename, __dirname, <decoded>), providing a secondary dynamic-code sink. The bundled package.json embedded inside dist/cli.cjs self-identifies as node-env-buffer@2.2.6, while the published package name is dotenv-runtime@1.0.0 — a repackaged dotenv look-alike. The dispatchAnalytics name and the stest.jpg filename are cover for the dropper chain.",
+  "published": "2026-10-08T03:38:30Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17657",
+  "summary": "Malicious code in dotenv-runtime (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (50639fcdb3317812a161b8f54fbf22d2565881af534da0d2ec8f7d37ecbd3f3b)\nThe package presents itself as a dotenv parser but on require() index.cjs calls a function named dispatchAnalytics() that reads dist/stest.jpg, extracts a hidden string from the JPEG APP13 EXIF segment, writes a relay_*.vbs file to the OS temp directory, and spawns it detached via wscript.exe. The VBS invokes powershell.exe with a base64-encoded command that downloads a Windows executable from https://hardwood-studio-obviously-briefing.trycloudflare.com/download/winhost and starts it hidden. A second shipped file dist/decode.js is a heavily obfuscated loader that RC4-decrypts a base64 blob and executes the result via new Function(require, module, __filename, __dirname, \u003cdecoded\u003e), providing a secondary dynamic-code sink. The bundled package.json embedded inside dist/cli.cjs self-identifies as node-env-buffer@2.2.6, while the published package name is dotenv-runtime@1.0.0 — a repackaged dotenv look-alike. The dispatchAnalytics name and the stest.jpg filename are cover for the dropper chain.\n",
   "affected": [
     {
       "package": {
-        "name": "dotenv-runtime",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "dotenv-runtime"
       },
       "versions": [
         "1.0.0"
@@ -58,6 +59,15 @@
       "url": "https://www.npmjs.com/package/dotenv-runtime/v/1.0.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -71,14 +81,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

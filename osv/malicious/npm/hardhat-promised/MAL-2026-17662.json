@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T03:44:05Z",
   "modified": "2026-10-08T03:44:05Z",
-  "summary": "hardhat-promised ships a 4.3MB obfuscated payload executed on require under pino cover",
-  "details": "The npm package hardhat-promised impersonates the pino logger: it ships pino's README (with pino shields.io badges linking to npmjs.com/package/pino), LICENSE, docs/, index.d.ts, and lib/ directory layout verbatim, while publishing under an unrelated name. index.js is a thin cover-story stub mirroring pino's public API and, at module top level, executes `require('./lib/config')`. lib/config.js is a 4,373,384-byte obfuscator.io-packed script (26,185-entry rotating string array, ~134k deobfuscation transforms, hex-escaped bootstrapper of the form `(function(a,z){const kb={...}})`) with no relation to the small constants module it replaces in real pino. Any consumer that requires this package executes the opaque 4.3MB blob on the installer's host at library load. The combination of unrelated-package impersonation, injected multi-megabyte obfuscated code where a trivial config module is advertised, and top-level execution on import is the trojanized-logger shape used to smuggle installer-harm code into dependency trees.",
+  "published": "2026-10-08T03:44:05Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17662",
+  "summary": "Malicious code in hardhat-promised (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (306eed59a2a4d15563101a3bfde19c1d6d5e0c9152cb0f3d0f421331e075ef4e)\nThe npm package hardhat-promised impersonates the pino logger: it ships pino's README (with pino shields.io badges linking to npmjs.com/package/pino), LICENSE, docs/, index.d.ts, and lib/ directory layout verbatim, while publishing under an unrelated name. index.js is a thin cover-story stub mirroring pino's public API and, at module top level, executes `require('./lib/config')`. lib/config.js is a 4,373,384-byte obfuscator.io-packed script (26,185-entry rotating string array, ~134k deobfuscation transforms, hex-escaped bootstrapper of the form `(function(a,z){const kb={...}})`) with no relation to the small constants module it replaces in real pino. Any consumer that requires this package executes the opaque 4.3MB blob on the installer's host at library load. The combination of unrelated-package impersonation, injected multi-megabyte obfuscated code where a trivial config module is advertised, and top-level execution on import is the trojanized-logger shape used to smuggle installer-harm code into dependency trees.\n",
   "affected": [
     {
       "package": {
-        "name": "hardhat-promised",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "hardhat-promised"
       },
       "versions": [
         "2.21.0"
@@ -53,6 +54,15 @@
       "url": "https://www.npmjs.com/package/hardhat-promised/v/2.21.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -66,14 +76,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

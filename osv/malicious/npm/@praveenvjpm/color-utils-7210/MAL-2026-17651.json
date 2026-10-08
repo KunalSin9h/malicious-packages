@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T03:36:19Z",
   "modified": "2026-10-08T03:36:19Z",
-  "summary": "Preinstall script exfiltrates host identifiers and flag files to hardcoded IP",
-  "details": "On npm install, the package's preinstall hook executes install.js, which collects host identifiers (os.hostname(), process.cwd(), username) and reads flag files from /flag, /flag.txt, /app/flag, /home/node/flag, and /tmp/flag, then PUTs the collected data to the hardcoded bare-IP endpoint http://154.57.164.66:39270/api/modules/* over plain HTTP. install.js is additionally wrapped as a PowerShell here-string (opening with @\" and closing with \"@ | Out-File -Encoding ascii install.js), structured as a polyglot that can rewrite itself on Windows before Node executes the exfiltration payload. The behavior fires automatically on default install and has no relationship to the package's stated color-utility purpose.",
+  "published": "2026-10-08T03:36:19Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17651",
+  "summary": "Malicious code in @praveenvjpm/color-utils-7210 (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (e0b29d9da4319a314669b87ffd4bc0d736dbf3f4c16803e0363ecb36288c7bb2)\nOn npm install, the package's preinstall hook executes install.js, which collects host identifiers (os.hostname(), process.cwd(), username) and reads flag files from /flag, /flag.txt, /app/flag, /home/node/flag, and /tmp/flag, then PUTs the collected data to the hardcoded bare-IP endpoint http://154.57.164.66:39270/api/modules/* over plain HTTP. install.js is additionally wrapped as a PowerShell here-string (opening with @\" and closing with \"@ | Out-File -Encoding ascii install.js), structured as a polyglot that can rewrite itself on Windows before Node executes the exfiltration payload. The behavior fires automatically on default install and has no relationship to the package's stated color-utility purpose.\n",
   "affected": [
     {
       "package": {
-        "name": "@praveenvjpm/color-utils-7210",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "@praveenvjpm/color-utils-7210"
       },
       "versions": [
         "1.0.0"
@@ -48,6 +49,15 @@
       "url": "https://www.npmjs.com/package/@praveenvjpm/color-utils-7210/v/1.0.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -61,14 +71,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }

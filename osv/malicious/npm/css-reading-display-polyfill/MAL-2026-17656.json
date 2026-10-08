@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T03:38:12Z",
   "modified": "2026-10-08T03:38:12Z",
-  "summary": "Dependency-confusion payload exfiltrates host identity and environment to webhook.site",
-  "details": "thunderboltRegistry.js runs an IIFE at module load that invokes child_process.execSync to collect host identity (id, whoami, uname), the first 2000 bytes of the environment (env | head -100), network interfaces (ifconfig), and /etc/hosts, then transmits the results together with the hostname and Node version to a hardcoded webhook.site URL (https://webhook.site/69bcd627-1871-4dda-b880-83b37ceac418) via https.get and fetch. The package exports proxies for internal Wix thunderbolt registry names (thunderboltRegistry, siteAssetsRegistry, documentManagementRegistry, editorRegistry, corvidRegistry, dataBindingRegistry, and others) with a manifest pointing at static.parastorage.com/unpkg/, and the beacon is labelled beacon=rce-poc, consistent with a dependency-confusion probe against Wix build infrastructure. The exfiltrated environment typically contains CI secrets and cloud credentials, giving an installer-side credential-theft blast radius wherever the build pipeline resolves these internal names to this package.",
+  "published": "2026-10-08T03:38:12Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17656",
+  "summary": "Malicious code in css-reading-display-polyfill (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (a06a8966ab81cea21f3e94074bcdb0d72ea55a96be2d03989e12aa2f4d86ad66)\nthunderboltRegistry.js runs an IIFE at module load that invokes child_process.execSync to collect host identity (id, whoami, uname), the first 2000 bytes of the environment (env | head -100), network interfaces (ifconfig), and /etc/hosts, then transmits the results together with the hostname and Node version to a hardcoded webhook.site URL (https://webhook.site/69bcd627-1871-4dda-b880-83b37ceac418) via https.get and fetch. The package exports proxies for internal Wix thunderbolt registry names (thunderboltRegistry, siteAssetsRegistry, documentManagementRegistry, editorRegistry, corvidRegistry, dataBindingRegistry, and others) with a manifest pointing at static.parastorage.com/unpkg/, and the beacon is labelled beacon=rce-poc, consistent with a dependency-confusion probe against Wix build infrastructure. The exfiltrated environment typically contains CI secrets and cloud credentials, giving an installer-side credential-theft blast radius wherever the build pipeline resolves these internal names to this package.\n",
   "affected": [
     {
       "package": {
-        "name": "css-reading-display-polyfill",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "css-reading-display-polyfill"
       },
       "versions": [
         "1.0.0"
@@ -48,6 +49,15 @@
       "url": "https://www.npmjs.com/package/css-reading-display-polyfill/v/1.0.0"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -61,14 +71,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }
