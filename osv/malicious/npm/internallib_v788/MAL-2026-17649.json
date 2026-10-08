@@ -1,17 +1,18 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T01:50:59Z",
   "modified": "2026-10-08T01:51:00Z",
+  "published": "2026-10-08T01:50:59Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17649",
   "aliases": [
     "GHSA-8pvp-4qvp-26m7"
   ],
-  "summary": "Malware in internallib_v788",
-  "details": "Any computer that has this package installed or running should be considered fully compromised. All secrets and keys stored on that computer should be rotated immediately from a different computer. The package should be removed, but as full control of the computer may have been given to an outside entity, there is no guarantee that removing the package will remove all malicious software resulting from installing it.",
+  "summary": "Malicious code in internallib_v788 (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: ghsa-malware (e9395ae1eb59e35b8fddb848dfee71475753188ad1fadfe3225f23ada5333cfb)\nAny computer that has this package installed or running should be considered fully compromised. All secrets and keys stored on that computer should be rotated immediately from a different computer. The package should be removed, but as full control of the computer may have been given to an outside entity, there is no guarantee that removing the package will remove all malicious software resulting from installing it.\n",
   "affected": [
     {
       "package": {
-        "name": "internallib_v788",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "internallib_v788"
       },
       "ranges": [
         {
@@ -30,8 +31,7 @@
             "description": "The product contains code that appears to be malicious in nature.",
             "name": "Embedded Malicious Code"
           }
-        ],
-        "ghsa": "https://github.com/advisories/GHSA-8pvp-4qvp-26m7"
+        ]
       }
     }
   ],
