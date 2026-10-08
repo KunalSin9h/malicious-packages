@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.7.4",
-  "published": "2026-10-08T17:47:11Z",
   "modified": "2026-10-08T17:47:11Z",
-  "summary": "libsignal dependency aliased to third-party publisher at mutable @latest tag",
-  "details": "package.json aliases the `libsignal` dependency to `npm:@bellaxchuu/libsignal-node@latest` — a non-standard publisher pinned to the mutable `latest` dist-tag with no version pin, no integrity check, and no hash. On every install, npm resolves this alias to whatever bytes `@bellaxchuu/libsignal-node` currently publishes, and the resolved module is loaded by `lib/Signal/libsignal.js` and `lib/Utils/crypto.js`, providing the Signal end-to-end cryptographic primitives (SessionCipher, SessionBuilder, ProtocolAddress, SessionRecord) with access to identity keys, prekeys, and plaintext messages. Whoever controls that upstream package name can push arbitrary code into every installer at any time, executing inside the Signal E2E encrypt/decrypt path. This is an off-registry-style trust relationship: the manifest itself constitutes the exposure, independent of what the current contents of the alias target happen to be.",
+  "published": "2026-10-08T17:47:11Z",
+  "schema_version": "1.7.4",
+  "id": "MAL-2026-17701",
+  "summary": "Malicious code in @kxafunc/xbails (npm)",
+  "details": "\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: amazon-inspector (629c665fbfef767c56d24af935d38312f7aa88d1c71d9dfb8c427192e54add0b)\npackage.json aliases the `libsignal` dependency to `npm:@bellaxchuu/libsignal-node@latest` — a non-standard publisher pinned to the mutable `latest` dist-tag with no version pin, no integrity check, and no hash. On every install, npm resolves this alias to whatever bytes `@bellaxchuu/libsignal-node` currently publishes, and the resolved module is loaded by `lib/Signal/libsignal.js` and `lib/Utils/crypto.js`, providing the Signal end-to-end cryptographic primitives (SessionCipher, SessionBuilder, ProtocolAddress, SessionRecord) with access to identity keys, prekeys, and plaintext messages. Whoever controls that upstream package name can push arbitrary code into every installer at any time, executing inside the Signal E2E encrypt/decrypt path. This is an off-registry-style trust relationship: the manifest itself constitutes the exposure, independent of what the current contents of the alias target happen to be.\n",
   "affected": [
     {
       "package": {
-        "name": "@kxafunc/xbails",
-        "ecosystem": "npm"
+        "ecosystem": "npm",
+        "name": "@kxafunc/xbails"
       },
       "versions": [
         "0.0.8"
@@ -48,6 +49,15 @@
       "url": "https://www.npmjs.com/package/@kxafunc/xbails/v/0.0.8"
     }
   ],
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "type": "FINDER",
+      "contact": [
+        "inspector-research@amazon.com"
+      ]
+    }
+  ],
   "database_specific": {
     "malicious-packages-origins": [
       {
@@ -61,14 +71,5 @@
         ]
       }
     ]
-  },
-  "credits": [
-    {
-      "name": "Amazon Inspector",
-      "contact": [
-        "inspector-research@amazon.com"
-      ],
-      "type": "FINDER"
-    }
-  ]
+  }
 }
