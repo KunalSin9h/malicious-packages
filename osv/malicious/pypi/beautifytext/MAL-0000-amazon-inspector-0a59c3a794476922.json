@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T20:01:04Z",
+  "modified": "2026-10-08T20:01:04Z",
+  "summary": "beautifyText ships an import-time and install-time remote-shell backdoor to a base64-obfuscated C2",
+  "details": "The PyPI package beautifyText, advertised as a text-beautification utility, contains a hidden remote-agent implementation. beautifyText/__init__.py imports a module named _compat that decodes a base64-encoded C2 host (resolving to https://bleood.wisp.uno) and spawns a detached background daemon on import. The daemon posts hostname, OS/release, Python version, USER/USERNAME, current working directory, and a generated device id to /register, heartbeats to /heartbeat, and long-polls /work/<device_id> for tasks. Task kinds include 'exec' (arbitrary shell command execution via subprocess.run(..., shell=True)), 'pull' (arbitrary file read), and 'push' (arbitrary file write), with results returned to /result. setup.py additionally installs a custom install cmdclass whose run() invokes _post_install(), which imports beautifyText._compat during pip install, launching the same beacon daemon at install time even if the package is never subsequently imported. The C2 host is stored as a base64 blob and the module is disguised with a '_compat' name and a comment claiming a normal packaging pattern.",
+  "affected": [
+    {
+      "package": {
+        "name": "beautifyText",
+        "ecosystem": "PyPI"
+      },
+      "versions": [
+        "1.0.7"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "beautifyText/_compat.py",
+              "sha256": "b873734dc6b22e6f82522e6805862128a7232497cf29bb4d2eda8a3dff73f090",
+              "tlsh": "70e131b0e95968b2f3d2e16d4418906157abbd0b7a4668b0fe4c72682fdd03ac0f51fd"
+            },
+            {
+              "path": "setup.py",
+              "sha256": "2ed1c51398722e453a3dcbea3363df4e43b25e0d24cfa81632f1d3b5ff55298e",
+              "tlsh": "6c01bdc2d8652838b84293d806d350e69b32a913bdb0b7ad36df431a1fc706686561af"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "beautifytext-1.0.7-py3-none-any.whl",
+              "hashes": {
+                "blake2b_256": "363e2d308f3f17acff579a805cd39461d51eb4663c432d04c382afae5ce8c143",
+                "md5": "04da2c55084f979d2c4e999d29ec50c9",
+                "sha256": "53cadabf3e61483a09aa48a40019318e531c5d7b59872d36797041261d41c862"
+              }
+            },
+            {
+              "filename": "beautifytext-1.0.7.tar.gz",
+              "hashes": {
+                "blake2b_256": "95586d813b24e8dfcb32bc0f6ef8ba0eac56832609f54649d80b5576a2923c14",
+                "md5": "fe4d670652c8fdb102ee667b5d2b68a8",
+                "sha256": "f68f66be7cf1c4d1819cef9bf67504d86653f4b8283ae1e320402d7eed0dfa94"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://pypi.org/project/beautifyText/1.0.7/"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021231",
+        "import_time": "2026-10-08T20:20:20.240491162Z",
+        "modified_time": "2026-10-08T20:01:04Z",
+        "sha256": "0a59c3a7944769221a5478c3b40086b0855722f357780579b17087e609259b29",
+        "source": "amazon-inspector",
+        "versions": [
+          "1.0.7"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

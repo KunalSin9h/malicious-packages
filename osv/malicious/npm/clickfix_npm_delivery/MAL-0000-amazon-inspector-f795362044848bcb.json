@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T20:08:25Z",
+  "modified": "2026-10-08T20:08:25Z",
+  "summary": "ClickFix phishing lure delivered via npm: fake Cloudflare Turnstile page copies PowerShell fetch-and-exec to clipboard",
+  "details": "The package has no library surface. `package.json` declares `main: index.html` and the tarball ships only that HTML page, whose sole purpose is a ClickFix social-engineering lure. The page impersonates Cloudflare Turnstile (Cloudflare branding, a spoofed `dash.cloudflare.com` header, a fake 'Verify you are human' checkbox, and a fake 'Ray ID / 403 Forbidden' bot-detection screen). When the victim clicks the fake checkbox, the page silently writes a PowerShell one-liner to the clipboard and instructs the victim to press Win+R, paste, and hit Enter. The clipboard payload uses `Start-BitsTransfer` to download a script from `http://ec2-65-2-4-62.ap-south-1.compute.amazonaws.com:443/script` over plain HTTP into `$env:temp\\sys.ps1` and executes it via `iex (gc $t -Raw)`, giving the operator of that EC2 host arbitrary code execution on the victim's Windows machine. The package name (`clickfix_npm_delivery`) and description ('Delivery POC Package') identify npm itself as the distribution channel for the lure.",
+  "affected": [
+    {
+      "package": {
+        "name": "clickfix_npm_delivery",
+        "ecosystem": "npm"
+      },
+      "versions": [
+        "1.0.2"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "index.html",
+              "sha256": "f15e0ffa14569bb5f2c473c823686836d5f8de8d8188ff5911ac6639d01c03c1",
+              "tlsh": "04c2635b26b710517913a0a56be74b563230d003c44acd793fed938d8f8aad5e9a37cc"
+            },
+            {
+              "path": "package.json",
+              "sha256": "d2c78e16bb11dd0bc157d22762b74c3be15c4c943eac6da1b25ea3ec2143f9d7",
+              "tlsh": "d9d0a7184981612300d80a15097c74167621ce1b0154380e8b83202896ef66314b970e"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://www.npmjs.com/package/clickfix_npm_delivery/v/1.0.2"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021234",
+        "import_time": "2026-10-08T20:20:20.409040666Z",
+        "modified_time": "2026-10-08T20:08:25Z",
+        "sha256": "f795362044848bcb73d95317e8761c4315720d6a052c6c88fdab47065499510d",
+        "source": "amazon-inspector",
+        "versions": [
+          "1.0.2"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}
