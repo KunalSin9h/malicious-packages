@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-09T00:05:42Z",
+  "modified": "2026-10-09T00:05:42Z",
+  "summary": "kafka-roller sdist exfiltrates host identifiers on install to third-party collectors",
+  "details": "setup.py spawns a daemon thread at module-import time that collects hostname, current working directory, platform/uname output, a timestamp and a generated uuid, then POSTs the JSON payload to https://webhook.site/bf5cb178-e0cf-43b6-8b1e-fb5d2f6ea9c9 and performs HTTPS and DNS requests against the OAST host jw1yrpkm5xpav.httpcollaborator.com. The beacon fires on `pip install` from sdist and during PEP 517 wheel build, before any user code imports the package. The package name squats an internal name referenced by a public Tesla repository (teslamotors/kafka-helmsman) and the version is set implausibly high (99.0.5), a dependency-confusion shape intended to win resolution against an internal `kafka_roller` package. The package metadata self-labels as a Bugcrowd research artifact, but the install-time beacon runs against any installer regardless of affiliation and ships host identifiers to attacker-controlled collectors without consent.",
+  "affected": [
+    {
+      "package": {
+        "name": "kafka-roller",
+        "ecosystem": "PyPI"
+      },
+      "versions": [
+        "99.0.5"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "setup.py",
+              "sha256": "eaf33674b9623ee3801fb3f512ed7a226cb9b639dbee37c660669c9f77d0c9ce",
+              "tlsh": "12617697c8152ca3d2c760d44435e9613326794bbd0268fe7adc9394af4e47680f356d"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "kafka_roller-99.0.5.tar.gz",
+              "hashes": {
+                "blake2b_256": "332c37b53ebe9756291086bb04cbe690530c009c463e10a531f392bdad34c450",
+                "md5": "4fd3a09a300401522067c1b388a5df7f",
+                "sha256": "a620d1d332a8d1e6f3a3b6816d372c2e2ba27de2bf623e89b7695ee48205d2c7"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://pypi.org/project/kafka-roller/99.0.5/"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021279",
+        "import_time": "2026-10-09T00:53:55.016035029Z",
+        "modified_time": "2026-10-09T00:05:42Z",
+        "sha256": "0c4a4bdb223674e7765b3bcaf930e372d0d72306422e0885035a561c943437ff",
+        "source": "amazon-inspector",
+        "versions": [
+          "99.0.5"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}

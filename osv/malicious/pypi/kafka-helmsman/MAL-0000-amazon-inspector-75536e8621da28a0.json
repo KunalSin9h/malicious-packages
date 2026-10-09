@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-09T00:05:33Z",
+  "modified": "2026-10-09T00:05:33Z",
+  "summary": "kafka-helmsman sdist exfiltrates installer host identifiers to webhook.site and OAST on install",
+  "details": "The sdist for kafka-helmsman 99.0.5 is a dependency-confusion placeholder targeting the internal Tesla project name github.com/teslamotors/kafka-helmsman. setup.py contains no build logic; its top-level code starts a daemon thread that collects hostname, current working directory, os.uname output, a timestamp, and a UUID, then POSTs the JSON body to https://webhook.site/bf5cb178-e0cf-43b6-8b1e-fb5d2f6ea9c9 and additionally transmits the same payload to the OAST host jw1yrpkm5xpav.httpcollaborator.com both over HTTPS and via DNS lookups (nslookup/getent/dig) with a base64-url path. Because setup.py executes during pip metadata and wheel build, the beacon fires on any default `pip install kafka-helmsman` and on any resolver that evaluates the sdist. The package declares packages=[] and py_modules=[] and ships no functional kafka tooling, so an installer that mis-resolved the public name instead of the internal one receives only the exfiltration payload. README framing of the artifact as Bugcrowd/Tesla research does not change the behavior: installer-identifying data is sent to hardcoded third-party endpoints controlled by the author.",
+  "affected": [
+    {
+      "package": {
+        "name": "kafka-helmsman",
+        "ecosystem": "PyPI"
+      },
+      "versions": [
+        "99.0.5"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "description": "The product contains code that appears to be malicious in nature.",
+            "name": "Embedded Malicious Code"
+          }
+        ],
+        "indicators": {
+          "evidence_files": [
+            {
+              "path": "setup.py",
+              "sha256": "3eed82e196f9b30324b9c349ae95cb927eff69bcb3634bc063bd5476f51c3705",
+              "tlsh": "65617797c8152ca3d2c760d44431e9613726790bbd0368fe7adc9395af4e47680f356e"
+            }
+          ],
+          "package_integrity": [
+            {
+              "filename": "kafka_helmsman-99.0.5.tar.gz",
+              "hashes": {
+                "blake2b_256": "ad95d067dc81cee4e5832f80603751587fcd4068cb6412e9d4a5950dba73f767",
+                "md5": "c3f031251924118313a20724ba0367ea",
+                "sha256": "1dfc8c46a4d0fd783eec52c93d0e40617fd699cb5bd5eb62a49e89fd01c7e1fd"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "PACKAGE",
+      "url": "https://pypi.org/project/kafka-helmsman/99.0.5/"
+    }
+  ],
+  "database_specific": {
+    "malicious-packages-origins": [
+      {
+        "id": "IN-MAL-2026-021278",
+        "import_time": "2026-10-09T00:53:54.955403434Z",
+        "modified_time": "2026-10-09T00:05:33Z",
+        "sha256": "75536e8621da28a0e941bd4a607da879a64ab71214e908992bf14840ed9a20b2",
+        "source": "amazon-inspector",
+        "versions": [
+          "99.0.5"
+        ]
+      }
+    ]
+  },
+  "credits": [
+    {
+      "name": "Amazon Inspector",
+      "contact": [
+        "inspector-research@amazon.com"
+      ],
+      "type": "FINDER"
+    }
+  ]
+}
